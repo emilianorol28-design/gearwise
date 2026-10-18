@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 
 <html lang="es">
@@ -10,11 +8,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="theme-color" content="#101827">
-
-  <meta name="description" content="Encuentra material deportivo según tu presupuesto con GearWise.">
-
-  <title>GearWise — Encuentra tu equipamiento</title>
+  <title>GearWise | Encuentra tu equipamiento</title>
 
   <style>
 
@@ -22,17 +16,17 @@
 
       --bg: #0b1220;
 
-      --panel: #111c2e;
+      --panel: #121d30;
 
-      --panel2: #172438;
+      --panel2: #17243a;
 
-      --lime: #c6f36b;
+      --text: #f4f7fb;
 
-      --text: #f5f7fb;
+      --muted: #a8b5c8;
 
-      --muted: #a5b2c5;
+      --lime: #c7f36b;
 
-      --border: #29374b;
+      --border: #293850;
 
     }
 
@@ -46,49 +40,25 @@
 
       color: var(--text);
 
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-
-        Roboto, Arial, sans-serif;
-
-      line-height: 1.5;
+      font-family: Arial, Helvetica, sans-serif;
 
     }
 
     header {
 
-      padding: 22px 18px;
+      padding: 24px 18px;
 
       border-bottom: 1px solid var(--border);
 
-      background: #0d1626;
-
-    }
-
-    .nav, main, footer {
-
-      width: min(1080px, 100%);
-
-      margin: auto;
-
-    }
-
-    .nav {
-
-      display: flex;
-
-      justify-content: space-between;
-
-      align-items: center;
-
-      gap: 12px;
+      text-align: center;
 
     }
 
     .logo {
 
-      font-size: 26px;
+      font-size: 29px;
 
-      font-weight: 900;
+      font-weight: 800;
 
       letter-spacing: -1px;
 
@@ -96,137 +66,131 @@
 
     .logo span { color: var(--lime); }
 
-    .tag {
+    header p {
 
-      color: var(--lime);
+      margin: 8px 0 0;
 
-      font-size: 12px;
-
-      font-weight: 700;
-
-      border: 1px solid #536a35;
-
-      padding: 5px 9px;
-
-      border-radius: 20px;
+      color: var(--muted);
 
     }
 
-    main { padding: 30px 18px 50px; }
+    main {
 
-    .hero { padding: 15px 0 25px; }
+      width: min(960px, 100%);
 
-    .eyebrow {
+      margin: auto;
 
-      color: var(--lime);
-
-      font-size: 12px;
-
-      font-weight: 800;
-
-      text-transform: uppercase;
-
-      letter-spacing: 2px;
+      padding: 26px 18px 60px;
 
     }
 
-    h1 {
-
-      font-size: clamp(32px, 7vw, 54px);
-
-      line-height: 1.08;
-
-      letter-spacing: -1.8px;
-
-      margin: 12px 0;
-
-    }
-
-    h1 span { color: var(--lime); }
-
-    .hero p, .muted { color: var(--muted); }
-
-    .filters {
-
-      display: grid;
-
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-
-      gap: 14px;
+    .panel {
 
       background: var(--panel);
 
       border: 1px solid var(--border);
 
-      padding: 18px;
-
       border-radius: 18px;
 
-      margin: 20px 0 28px;
+      padding: 24px;
+
+      margin-bottom: 22px;
 
     }
 
-    .field label {
+    h1, h2, h3 { margin-top: 0; }
+
+    h1 {
+
+      font-size: clamp(30px, 5vw, 44px);
+
+      line-height: 1.1;
+
+    }
+
+    .accent { color: var(--lime); }
+
+    .muted { color: var(--muted); line-height: 1.6; }
+
+    .step { margin-bottom: 24px; }
+
+    label {
 
       display: block;
 
-      font-size: 13px;
+      font-weight: 700;
 
-      color: var(--muted);
-
-      margin-bottom: 7px;
+      margin-bottom: 10px;
 
     }
 
-    input, select {
+    select, input {
 
       width: 100%;
 
-      min-height: 45px;
+      padding: 13px;
 
       border: 1px solid var(--border);
 
-      background: #0b1423;
-
-      color: var(--text);
-
       border-radius: 10px;
 
-      padding: 10px 12px;
+      background: var(--bg);
+
+      color: var(--text);
 
       font-size: 16px;
 
     }
 
-    input:focus, select:focus {
+    button, .buy {
 
-      outline: 2px solid var(--lime);
+      display: inline-block;
 
-      outline-offset: 2px;
+      background: var(--lime);
+
+      color: #17200a;
+
+      border: 0;
+
+      border-radius: 10px;
+
+      padding: 14px 19px;
+
+      font-size: 16px;
+
+      font-weight: 800;
+
+      text-decoration: none;
+
+      cursor: pointer;
 
     }
 
-    .section-heading {
+    button:hover, .buy:hover { opacity: .9; }
 
-      display: flex;
+    .secondary {
 
-      justify-content: space-between;
+      background: var(--panel2);
 
-      align-items: center;
+      color: var(--text);
 
-      gap: 12px;
-
-      margin: 24px 0 16px;
+      border: 1px solid var(--border);
 
     }
 
-    h2 { margin: 0; font-size: 22px; }
+    .hidden { display: none !important; }
 
-    #count {
+    .notice {
+
+      background: var(--panel2);
+
+      padding: 14px;
+
+      border-radius: 10px;
 
       color: var(--muted);
 
-      font-size: 13px;
+      line-height: 1.5;
 
     }
 
@@ -234,69 +198,39 @@
 
       display: grid;
 
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
 
       gap: 16px;
 
     }
 
-    .card {
-
-      display: flex;
-
-      flex-direction: column;
-
-      min-width: 0;
+    .product {
 
       background: var(--panel);
 
       border: 1px solid var(--border);
 
-      border-radius: 16px;
+      border-radius: 15px;
 
       padding: 18px;
 
-    }
+      display: flex;
 
-    .product-icon {
+      flex-direction: column;
 
-      display: grid;
-
-      place-items: center;
-
-      min-height: 100px;
-
-      border-radius: 12px;
-
-      background: var(--panel2);
-
-      font-size: 48px;
-
-      margin-bottom: 15px;
+      gap: 10px;
 
     }
 
-    .sport {
+    .product h3 { margin: 0; font-size: 19px; }
 
-      color: var(--lime);
+    .price {
 
-      font-size: 11px;
-
-      text-transform: uppercase;
-
-      letter-spacing: 1px;
+      font-size: 25px;
 
       font-weight: 800;
 
-    }
-
-    .card h3 {
-
-      font-size: 19px;
-
-      line-height: 1.3;
-
-      margin: 7px 0;
+      color: var(--lime);
 
     }
 
@@ -304,121 +238,35 @@
 
       color: var(--muted);
 
-      font-size: 14px;
+      line-height: 1.5;
 
-      flex-grow: 1;
-
-    }
-
-    .price {
-
-      font-size: 29px;
-
-      font-weight: 850;
-
-      letter-spacing: -1px;
-
-      margin: 12px 0 2px;
+      flex: 1;
 
     }
 
-    .merchant {
+    .merchant { color: var(--muted); font-size: 14px; }
 
-      font-size: 13px;
+    .status {
 
       color: var(--muted);
-
-      margin-bottom: 15px;
-
-    }
-
-    .verified {
 
       font-size: 12px;
 
-      color: var(--muted);
-
-      margin-bottom: 14px;
-
     }
 
-    .verified.ok { color: var(--lime); }
-
-    .buy {
-
-      display: block;
-
-      text-align: center;
-
-      padding: 12px;
-
-      background: var(--lime);
-
-      color: #14200b;
-
-      font-weight: 850;
-
-      text-decoration: none;
-
-      border-radius: 10px;
-
-      margin-top: auto;
-
-    }
-
-    .buy:hover { filter: brightness(1.08); }
-
-    .notice, .empty {
-
-      background: var(--panel);
-
-      border: 1px solid var(--border);
-
-      border-radius: 14px;
-
-      padding: 18px;
-
-      color: var(--muted);
-
-      margin: 16px 0;
-
-    }
-
-    .empty { text-align: center; }
+    .error { color: #ffb4b4; }
 
     footer {
 
-      padding: 25px 18px 35px;
-
-      border-top: 1px solid var(--border);
+      text-align: center;
 
       color: var(--muted);
 
+      padding: 20px;
+
+      border-top: 1px solid var(--border);
+
       font-size: 13px;
-
-    }
-
-    @media (max-width: 760px) {
-
-      .products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-
-      .filters { grid-template-columns: 1fr 1fr; }
-
-      .field:last-child { grid-column: 1 / -1; }
-
-    }
-
-    @media (max-width: 480px) {
-
-      main { padding-top: 20px; }
-
-      .products { grid-template-columns: 1fr; }
-
-      .filters { grid-template-columns: 1fr; }
-
-      .field:last-child { grid-column: auto; }
-
-      .tag { font-size: 10px; }
 
     }
 
@@ -430,369 +278,403 @@
 
   <header>
 
-    <div class="nav">
+    <div class="logo">Gear<span>Wise</span></div>
 
-      <div class="logo">Gear<span>Wise</span></div>
-
-      <div class="tag">EQUÍPATE CON CABEZA</div>
-
-    </div>
+    <p>Tu equipamiento. Tu presupuesto. Tu elección.</p>
 
   </header>
 
   <main>
 
-    <section class="hero">
+    <section id="welcome" class="panel">
 
-      <div class="eyebrow">Tu deporte. Tu presupuesto.</div>
+      <h1>Encuentra el equipamiento <span class="accent">ideal para ti.</span></h1>
 
-      <h1>Encuentra tu próximo<br><span>equipamiento deportivo.</span></h1>
+      <p class="muted">
 
-      <p>Compara opciones, ajusta tu presupuesto y encuentra productos para entrenar sin gastar de más.</p>
+        Responde unas preguntas rápidas y te mostraremos opciones deportivas
+
+        que encajen con tus preferencias y presupuesto.
+
+      </p>
+
+      <button id="startBtn">Encontrar mi equipamiento</button>
 
     </section>
 
-    <section class="filters" aria-label="Filtros de productos">
+    <section id="quiz" class="panel hidden">
 
-      <div class="field">
+      <h2>Personaliza tu recomendación</h2>
 
-        <label for="budget">Presupuesto máximo (€)</label>
+      <p class="muted">Cuéntanos qué buscas para encontrar opciones adecuadas.</p>
 
-        <input id="budget" type="number" min="0" step="0.01"
+      <div class="step">
 
-          placeholder="Ej. 60">
-
-      </div>
-
-      <div class="field">
-
-        <label for="sport">Deporte</label>
+        <label for="sport">1. ¿Qué deporte practicas?</label>
 
         <select id="sport">
 
-          <option value="all">Todos los deportes</option>
-
           <option value="running">Running</option>
 
-        </select>
+          <option value="football">Fútbol</option>
 
-      </div>
+          <option value="basketball">Baloncesto</option>
 
-      <div class="field">
+          <option value="fitness">Fitness</option>
 
-        <label for="sort">Ordenar por precio</label>
-
-        <select id="sort">
-
-          <option value="low">Menor precio primero</option>
-
-          <option value="high">Mayor precio primero</option>
+          <option value="tennis">Tenis</option>
 
         </select>
 
       </div>
+
+      <div class="step">
+
+        <label for="budget">2. ¿Cuál es tu presupuesto máximo?</label>
+
+        <select id="budget">
+
+          <option value="50">Hasta 50 €</option>
+
+          <option value="100" selected>Hasta 100 €</option>
+
+          <option value="180">Hasta 180 €</option>
+
+          <option value="300">Hasta 300 €</option>
+
+          <option value="1000">Cualquier precio</option>
+
+        </select>
+
+      </div>
+
+      <div class="step">
+
+        <label for="level">3. ¿Cuál es tu nivel?</label>
+
+        <select id="level">
+
+          <option value="beginner">Estoy empezando</option>
+
+          <option value="regular">Practico regularmente</option>
+
+          <option value="advanced">Tengo experiencia avanzada</option>
+
+        </select>
+
+      </div>
+
+      <div class="step">
+
+        <label for="purpose">4. ¿Qué necesitas principalmente?</label>
+
+        <select id="purpose">
+
+          <option value="daily">Para entrenar habitualmente</option>
+
+          <option value="performance">Para mejorar mi rendimiento</option>
+
+          <option value="competition">Para competir</option>
+
+        </select>
+
+      </div>
+
+      <button id="recommendBtn">Ver mis recomendaciones</button>
+
+      <button id="backBtn" class="secondary">Volver</button>
+
+      <p id="quizError" class="error hidden"></p>
 
     </section>
 
-    <div class="section-heading">
+    <section id="results" class="hidden">
 
-      <h2>Productos para ti</h2>
+      <div class="panel">
 
-      <span id="count">Cargando productos…</span>
+        <h2>Tus <span class="accent">recomendaciones</span></h2>
 
-    </div>
+        <p id="summary" class="muted"></p>
 
-    <div id="status" class="notice" role="status">
+        <p class="notice">
 
-      Estamos cargando el catálogo…
+          Estas opciones se seleccionan según el deporte y el presupuesto.
 
-    </div>
+          Comprueba el precio y la disponibilidad en la tienda antes de comprar.
 
-    <section id="products" class="products" aria-live="polite"></section>
+        </p>
+
+        <button id="restartBtn" class="secondary">Cambiar mis respuestas</button>
+
+      </div>
+
+      <div id="loading" class="panel">Buscando productos...</div>
+
+      <div id="productList" class="products"></div>
+
+      <p id="empty" class="notice hidden">
+
+        Todavía no hay productos para esta combinación. Prueba con otro deporte
+
+        o aumenta el presupuesto.
+
+      </p>
+
+      <p id="loadError" class="notice error hidden">
+
+        No se pudo cargar el catálogo. Comprueba que products.json esté en la
+
+        raíz del repositorio y contenga JSON válido.
+
+      </p>
+
+    </section>
 
   </main>
 
-  <footer>
-
-    <div>© 2026 GearWise · Encuentra equipamiento según tu presupuesto.</div>
-
-    <p>Los precios y la disponibilidad pueden cambiar. Comprueba siempre el precio final en la tienda antes de comprar.</p>
-
-  </footer>
+  <footer>GearWise · Compara opciones y elige con confianza.</footer>
 
   <script>
 
-    const productsElement = document.getElementById("products");
+    const welcome = document.getElementById("welcome");
 
-    const statusElement = document.getElementById("status");
+    const quiz = document.getElementById("quiz");
 
-    const countElement = document.getElementById("count");
+    const results = document.getElementById("results");
 
-    const budgetElement = document.getElementById("budget");
+    const productList = document.getElementById("productList");
 
-    const sportElement = document.getElementById("sport");
+    const loading = document.getElementById("loading");
 
-    const sortElement = document.getElementById("sort");
+    const empty = document.getElementById("empty");
+
+    const loadError = document.getElementById("loadError");
+
+    const quizError = document.getElementById("quizError");
 
     let allProducts = [];
 
-    function safeText(value, fallback = "") {
+    document.getElementById("startBtn").addEventListener("click", () => {
 
-      if (value === null || value === undefined || value === "") {
+      welcome.classList.add("hidden");
 
-        return fallback;
+      quiz.classList.remove("hidden");
 
-      }
+    });
 
-      return String(value);
+    document.getElementById("backBtn").addEventListener("click", () => {
 
-    }
+      quiz.classList.add("hidden");
 
-    function validProductUrl(value) {
+      welcome.classList.remove("hidden");
 
-      try {
+    });
 
-        const url = new URL(value);
+    document.getElementById("restartBtn").addEventListener("click", () => {
 
-        return url.protocol === "https:" || url.protocol === "http:";
+      results.classList.add("hidden");
 
-      } catch {
+      productList.replaceChildren();
 
-        return false;
+      quiz.classList.remove("hidden");
 
-      }
+    });
 
-    }
-
-    function euro(value) {
+    function formatPrice(price, currency) {
 
       return new Intl.NumberFormat("es-ES", {
 
         style: "currency",
 
-        currency: "EUR"
+        currency: currency || "EUR"
 
-      }).format(value);
+      }).format(Number(price));
 
     }
 
-    function renderProducts() {
+    function makeProductCard(product) {
 
-      const budgetText = budgetElement.value.trim();
+      const card = document.createElement("article");
 
-      const budget = budgetText === "" ? Infinity : Number(budgetText);
+      card.className = "product";
 
-      const selectedSport = sportElement.value;
+      const name = document.createElement("h3");
 
-      const sort = sortElement.value;
+      name.textContent = product.name || "Producto deportivo";
 
-      let products = allProducts.filter(product => {
+      const price = document.createElement("div");
 
-        const price = Number(product.price);
+      price.className = "price";
 
-        if (!Number.isFinite(price) || price < 0) return false;
+      price.textContent = formatPrice(product.price, product.currency);
 
-        if (budgetText !== "" &&
+      const merchant = document.createElement("div");
 
-            (!Number.isFinite(budget) || price > budget)) return false;
+      merchant.className = "merchant";
 
-        const sport = safeText(product.sport, "other").toLowerCase();
+      merchant.textContent = "Tienda: " + (product.merchant || product.store || "Consultar tienda");
 
-        if (selectedSport !== "all" && sport !== selectedSport) {
+      const description = document.createElement("p");
 
-          return false;
+      description.className = "description";
 
-        }
+      description.textContent = product.description || "Producto deportivo.";
 
-        return true;
+      const status = document.createElement("div");
 
-      });
+      status.className = "status";
 
-      products.sort((a, b) => {
+      status.textContent = product.priceVerified
 
-        const difference = Number(a.price) - Number(b.price);
+        ? "Precio marcado como verificado; comprueba la tienda."
 
-        return sort === "high" ? -difference : difference;
+        : "Precio pendiente de verificar en la tienda.";
 
-      });
+      card.append(name, price, merchant, description, status);
 
-      productsElement.replaceChildren();
+      const url = product.productUrl || product.url;
 
-      countElement.textContent =
+      if (url) {
 
-        products.length + (products.length === 1 ? " producto" : " productos");
+        try {
 
-      if (products.length === 0) {
+          const parsed = new URL(url);
 
-        const empty = document.createElement("div");
+          if (parsed.protocol === "https:" || parsed.protocol === "http:") {
 
-        empty.className = "empty";
+            const link = document.createElement("a");
 
-        empty.textContent = "No hay productos que coincidan. Prueba a aumentar tu presupuesto o cambiar los filtros.";
+            link.className = "buy";
 
-        productsElement.appendChild(empty);
+            link.href = parsed.href;
 
-        return;
+            link.target = "_blank";
+
+            link.rel = "noopener noreferrer";
+
+            link.textContent = "Ver en la tienda";
+
+            card.appendChild(link);
+
+          }
+
+        } catch (_) {}
 
       }
 
-      products.forEach(product => {
-
-        const card = document.createElement("article");
-
-        card.className = "card";
-
-        const icon = document.createElement("div");
-
-        icon.className = "product-icon";
-
-        icon.setAttribute("aria-hidden", "true");
-
-        icon.textContent = "👟";
-
-        const sport = document.createElement("div");
-
-        sport.className = "sport";
-
-        sport.textContent = safeText(product.sport, "Deporte");
-
-        const title = document.createElement("h3");
-
-        title.textContent = safeText(product.name, "Producto deportivo");
-
-        const description = document.createElement("p");
-
-        description.className = "description";
-
-        description.textContent = safeText(
-
-          product.description,
-
-          "Consulta los detalles en la tienda."
-
-        );
-
-        const price = document.createElement("div");
-
-        price.className = "price";
-
-        price.textContent = euro(Number(product.price));
-
-        const merchant = document.createElement("div");
-
-        merchant.className = "merchant";
-
-        merchant.textContent = "Tienda: " +
-
-          safeText(product.merchant || product.store, "No especificada");
-
-        const verified = document.createElement("div");
-
-        verified.className = "verified" +
-
-          (product.priceVerified === true ? " ok" : "");
-
-        verified.textContent = product.priceVerified === true
-
-          ? "✓ Precio verificado anteriormente"
-
-          : "ℹ️ Precio pendiente de verificación";
-
-        card.append(icon, sport, title, description, price, merchant, verified);
-
-        const productUrl = product.productUrl || product.url;
-
-        if (validProductUrl(productUrl)) {
-
-          const link = document.createElement("a");
-
-          link.className = "buy";
-
-          link.href = productUrl;
-
-          link.target = "_blank";
-
-          link.rel = "noopener noreferrer";
-
-          link.textContent = "Ver producto";
-
-          card.appendChild(link);
-
-        } else {
-
-          const noLink = document.createElement("div");
-
-          noLink.className = "notice";
-
-          noLink.textContent = "Enlace del producto pendiente.";
-
-          card.appendChild(noLink);
-
-        }
-
-        productsElement.appendChild(card);
-
-      });
+      return card;
 
     }
 
     async function loadProducts() {
 
-      try {
+      const response = await fetch("./products.json", { cache: "no-store" });
 
-        const response = await fetch("./products.json", {
+      if (!response.ok) throw new Error("No se pudo encontrar products.json");
 
-          cache: "no-store"
+      const products = await response.json();
 
-        });
+      if (!Array.isArray(products)) throw new Error("El catálogo debe ser una lista JSON");
 
-        if (!response.ok) {
-
-          throw new Error("No se pudo abrir products.json");
-
-        }
-
-        const data = await response.json();
-
-        if (!Array.isArray(data)) {
-
-          throw new Error("El catálogo no tiene el formato esperado");
-
-        }
-
-        allProducts = data.filter(product =>
-
-          product && typeof product === "object"
-
-        );
-
-        statusElement.hidden = true;
-
-        renderProducts();
-
-      } catch (error) {
-
-        console.error("Error cargando GearWise:", error);
-
-        statusElement.hidden = false;
-
-        statusElement.textContent =
-
-          "No se pudo cargar el catálogo. Comprueba que products.json esté en la raíz del repositorio y contenga JSON válido.";
-
-        countElement.textContent = "Error al cargar";
-
-      }
+      return products;
 
     }
 
-    budgetElement.addEventListener("input", renderProducts);
+    document.getElementById("recommendBtn").addEventListener("click", async () => {
 
-    sportElement.addEventListener("change", renderProducts);
+      quizError.classList.add("hidden");
 
-    sortElement.addEventListener("change", renderProducts);
+      const sport = document.getElementById("sport").value;
 
-    loadProducts();
+      const budget = Number(document.getElementById("budget").value);
+
+      const level = document.getElementById("level").value;
+
+      const purpose = document.getElementById("purpose").value;
+
+      quiz.classList.add("hidden");
+
+      results.classList.remove("hidden");
+
+      productList.replaceChildren();
+
+      empty.classList.add("hidden");
+
+      loadError.classList.add("hidden");
+
+      loading.classList.remove("hidden");
+
+      const levelText = {
+
+        beginner: "principiante",
+
+        regular: "práctica regular",
+
+        advanced: "nivel avanzado"
+
+      }[level];
+
+      const purposeText = {
+
+        daily: "entrenamiento habitual",
+
+        performance: "mejorar el rendimiento",
+
+        competition: "competición"
+
+      }[purpose];
+
+      document.getElementById("summary").textContent =
+
+        "Deporte: " + sport + " · Presupuesto máximo: " +
+
+        (budget === 1000 ? "sin límite fijado" : formatPrice(budget, "EUR")) +
+
+        " · Nivel: " + levelText + " · Objetivo: " + purposeText + ".";
+
+      try {
+
+        allProducts = await loadProducts();
+
+        const matches = allProducts.filter(product => {
+
+          const price = Number(product.price);
+
+          return product.sport &&
+
+            product.sport.toLowerCase() === sport &&
+
+            Number.isFinite(price) &&
+
+            price >= 0 &&
+
+            price <= budget;
+
+        });
+
+        matches.sort((a, b) => Number(a.price) - Number(b.price));
+
+        loading.classList.add("hidden");
+
+        if (matches.length === 0) {
+
+          empty.classList.remove("hidden");
+
+        } else {
+
+          matches.forEach(product => productList.appendChild(makeProductCard(product)));
+
+        }
+
+      } catch (error) {
+
+        loading.classList.add("hidden");
+
+        loadError.classList.remove("hidden");
+
+      }
+
+    });
 
   </script>
 
