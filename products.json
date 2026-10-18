@@ -4,7 +4,7 @@
 
   {
 
-    "id": "adidas-runblaze",
+    "id": 1,
 
     "name": "Adidas Runblaze",
 
@@ -20,13 +20,13 @@
 
     "priceVerified": false,
 
-    "description": "Zapatillas de running para comparar dentro de un presupuesto ajustado."
+    "description": "Opción económica para empezar a correr."
 
   },
 
   {
 
-    "id": "asics-gel-windhawk",
+    "id": 2,
 
     "name": "ASICS GEL Windhawk",
 
@@ -42,13 +42,13 @@
 
     "priceVerified": false,
 
-    "description": "Alternativa para comparar calzado de running en el rango de 50 euros."
+    "description": "Opción para comparar zapatillas de running."
 
   },
 
   {
 
-    "id": "kiprun-kipride",
+    "id": 3,
 
     "name": "KIPRUN Kipride",
 
@@ -64,13 +64,13 @@
 
     "priceVerified": false,
 
-    "description": "Opción de presupuesto medio para comparar características y comodidad."
+    "description": "Alternativa para explorar dentro de la gama KIPRUN."
 
   },
 
   {
 
-    "id": "kiprun-jogflow-100",
+    "id": 4,
 
     "name": "KIPRUN Jogflow 100.1",
 
@@ -86,7 +86,7 @@
 
     "priceVerified": false,
 
-    "description": "Opción económica que conviene evaluar según el uso previsto."
+    "description": "Alternativa de precio bajo para comparar."
 
   }
 
