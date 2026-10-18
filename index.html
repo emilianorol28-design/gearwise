@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 
 <html lang="es">
@@ -6,9 +8,9 @@
 
   <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>GearWise | Encuentra tu equipamiento</title>
+  <title>GearWise | Recomendaciones deportivas</title>
 
   <style>
 
@@ -18,7 +20,7 @@
 
       --panel: #121d30;
 
-      --panel2: #17243a;
+      --panel2: #1a2940;
 
       --text: #f4f7fb;
 
@@ -46,17 +48,17 @@
 
     header {
 
-      padding: 24px 18px;
-
-      border-bottom: 1px solid var(--border);
+      padding: 22px 18px;
 
       text-align: center;
+
+      border-bottom: 1px solid var(--border);
 
     }
 
     .logo {
 
-      font-size: 29px;
+      font-size: 30px;
 
       font-weight: 800;
 
@@ -64,23 +66,23 @@
 
     }
 
-    .logo span { color: var(--lime); }
+    .logo span, .accent { color: var(--lime); }
 
-    header p {
-
-      margin: 8px 0 0;
+    header p, .muted {
 
       color: var(--muted);
+
+      line-height: 1.6;
 
     }
 
     main {
 
-      width: min(960px, 100%);
+      width: min(1000px, 100%);
 
       margin: auto;
 
-      padding: 26px 18px 60px;
+      padding: 28px 18px 55px;
 
     }
 
@@ -98,21 +100,17 @@
 
     }
 
-    h1, h2, h3 { margin-top: 0; }
-
     h1 {
 
-      font-size: clamp(30px, 5vw, 44px);
+      font-size: clamp(30px, 5vw, 46px);
 
       line-height: 1.1;
 
     }
 
-    .accent { color: var(--lime); }
+    .hidden { display: none !important; }
 
-    .muted { color: var(--muted); line-height: 1.6; }
-
-    .step { margin-bottom: 24px; }
+    .step { margin: 22px 0; }
 
     label {
 
@@ -124,15 +122,15 @@
 
     }
 
-    select, input {
+    select {
 
       width: 100%;
 
-      padding: 13px;
-
-      border: 1px solid var(--border);
+      padding: 14px;
 
       border-radius: 10px;
+
+      border: 1px solid var(--border);
 
       background: var(--bg);
 
@@ -146,19 +144,19 @@
 
       display: inline-block;
 
-      background: var(--lime);
-
-      color: #17200a;
-
       border: 0;
 
       border-radius: 10px;
 
-      padding: 14px 19px;
+      padding: 14px 18px;
 
-      font-size: 16px;
+      background: var(--lime);
+
+      color: #17200a;
 
       font-weight: 800;
+
+      font-size: 15px;
 
       text-decoration: none;
 
@@ -166,31 +164,49 @@
 
     }
 
-    button:hover, .buy:hover { opacity: .9; }
-
-    .secondary {
-
-      background: var(--panel2);
+    button.secondary {
 
       color: var(--text);
 
+      background: var(--panel2);
+
       border: 1px solid var(--border);
+
+      margin-left: 8px;
 
     }
 
-    .hidden { display: none !important; }
+    button:focus-visible, a:focus-visible, select:focus-visible {
 
-    .notice {
+      outline: 3px solid white;
+
+      outline-offset: 3px;
+
+    }
+
+    .summary {
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 8px;
+
+      margin: 18px 0;
+
+    }
+
+    .chip {
 
       background: var(--panel2);
 
-      padding: 14px;
+      border: 1px solid var(--border);
 
-      border-radius: 10px;
+      border-radius: 30px;
 
-      color: var(--muted);
+      padding: 8px 12px;
 
-      line-height: 1.5;
+      font-size: 13px;
 
     }
 
@@ -198,7 +214,7 @@
 
       display: grid;
 
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
 
       gap: 16px;
 
@@ -206,51 +222,63 @@
 
     .product {
 
-      background: var(--panel);
-
-      border: 1px solid var(--border);
-
-      border-radius: 15px;
-
-      padding: 18px;
-
       display: flex;
 
       flex-direction: column;
 
-      gap: 10px;
+      gap: 12px;
+
+      background: var(--panel);
+
+      border: 1px solid var(--border);
+
+      border-radius: 16px;
+
+      padding: 20px;
 
     }
 
-    .product h3 { margin: 0; font-size: 19px; }
+    .product h3 { margin: 0; font-size: 20px; }
 
     .price {
 
-      font-size: 25px;
+      color: var(--lime);
+
+      font-size: 26px;
 
       font-weight: 800;
 
-      color: var(--lime);
+    }
+
+    .muted.small { font-size: 13px; }
+
+    .reason {
+
+      background: var(--panel2);
+
+      padding: 12px;
+
+      border-radius: 10px;
+
+      font-size: 14px;
+
+      line-height: 1.5;
 
     }
 
-    .description {
+    .product .buy { margin-top: auto; text-align: center; }
+
+    .notice {
+
+      padding: 15px;
+
+      border-radius: 10px;
+
+      background: var(--panel2);
 
       color: var(--muted);
 
       line-height: 1.5;
-
-      flex: 1;
-
-    }
-
-    .merchant { color: var(--muted); font-size: 14px; }
-
-    .status {
-
-      color: var(--muted);
-
-      font-size: 12px;
 
     }
 
@@ -258,13 +286,13 @@
 
     footer {
 
+      padding: 22px;
+
       text-align: center;
 
-      color: var(--muted);
-
-      padding: 20px;
-
       border-top: 1px solid var(--border);
+
+      color: var(--muted);
 
       font-size: 13px;
 
@@ -280,7 +308,7 @@
 
     <div class="logo">Gear<span>Wise</span></div>
 
-    <p>Tu equipamiento. Tu presupuesto. Tu elección.</p>
+    <p>Encuentra equipamiento que encaje contigo.</p>
 
   </header>
 
@@ -288,13 +316,13 @@
 
     <section id="welcome" class="panel">
 
-      <h1>Encuentra el equipamiento <span class="accent">ideal para ti.</span></h1>
+      <h1>Compra mejor.<br><span class="accent">Entrena a tu manera.</span></h1>
 
       <p class="muted">
 
-        Responde unas preguntas rápidas y te mostraremos opciones deportivas
+        Dinos qué deporte practicas, cuánto quieres gastar y qué buscas.
 
-        que encajen con tus preferencias y presupuesto.
+        Compararemos las opciones disponibles en nuestro catálogo.
 
       </p>
 
@@ -304,9 +332,9 @@
 
     <section id="quiz" class="panel hidden">
 
-      <h2>Personaliza tu recomendación</h2>
+      <h2>Tu perfil deportivo</h2>
 
-      <p class="muted">Cuéntanos qué buscas para encontrar opciones adecuadas.</p>
+      <p class="muted">Responde estas cuatro preguntas para personalizar los resultados.</p>
 
       <div class="step">
 
@@ -336,13 +364,15 @@
 
           <option value="50">Hasta 50 €</option>
 
+          <option value="80">Hasta 80 €</option>
+
           <option value="100" selected>Hasta 100 €</option>
 
           <option value="180">Hasta 180 €</option>
 
           <option value="300">Hasta 300 €</option>
 
-          <option value="1000">Cualquier precio</option>
+          <option value="1000">Sin límite fijado</option>
 
         </select>
 
@@ -366,15 +396,15 @@
 
       <div class="step">
 
-        <label for="purpose">4. ¿Qué necesitas principalmente?</label>
+        <label for="goal">4. ¿Cuál es tu objetivo principal?</label>
 
-        <select id="purpose">
+        <select id="goal">
 
-          <option value="daily">Para entrenar habitualmente</option>
+          <option value="daily">Entrenar habitualmente</option>
 
-          <option value="performance">Para mejorar mi rendimiento</option>
+          <option value="performance">Mejorar mi rendimiento</option>
 
-          <option value="competition">Para competir</option>
+          <option value="competition">Competir</option>
 
         </select>
 
@@ -384,47 +414,33 @@
 
       <button id="backBtn" class="secondary">Volver</button>
 
-      <p id="quizError" class="error hidden"></p>
-
     </section>
 
     <section id="results" class="hidden">
 
       <div class="panel">
 
-        <h2>Tus <span class="accent">recomendaciones</span></h2>
+        <h2>Tus <span class="accent">resultados</span></h2>
 
-        <p id="summary" class="muted"></p>
+        <p id="intro" class="muted"></p>
 
-        <p class="notice">
+        <div id="summary" class="summary"></div>
 
-          Estas opciones se seleccionan según el deporte y el presupuesto.
-
-          Comprueba el precio y la disponibilidad en la tienda antes de comprar.
-
-        </p>
-
-        <button id="restartBtn" class="secondary">Cambiar mis respuestas</button>
+        <button id="editBtn" class="secondary">Cambiar respuestas</button>
 
       </div>
 
-      <div id="loading" class="panel">Buscando productos...</div>
+      <div id="loading" class="notice hidden">Buscando opciones para ti…</div>
 
       <div id="productList" class="products"></div>
 
-      <p id="empty" class="notice hidden">
-
-        Todavía no hay productos para esta combinación. Prueba con otro deporte
-
-        o aumenta el presupuesto.
-
-      </p>
+      <p id="empty" class="notice hidden"></p>
 
       <p id="loadError" class="notice error hidden">
 
-        No se pudo cargar el catálogo. Comprueba que products.json esté en la
+        No se pudo cargar el catálogo. Comprueba que products.json esté en
 
-        raíz del repositorio y contenga JSON válido.
+        la raíz del repositorio y contenga JSON válido.
 
       </p>
 
@@ -436,25 +452,15 @@
 
   <script>
 
-    const welcome = document.getElementById("welcome");
+    const $ = id => document.getElementById(id);
 
-    const quiz = document.getElementById("quiz");
+    const welcome = $("welcome");
 
-    const results = document.getElementById("results");
+    const quiz = $("quiz");
 
-    const productList = document.getElementById("productList");
+    const results = $("results");
 
-    const loading = document.getElementById("loading");
-
-    const empty = document.getElementById("empty");
-
-    const loadError = document.getElementById("loadError");
-
-    const quizError = document.getElementById("quizError");
-
-    let allProducts = [];
-
-    document.getElementById("startBtn").addEventListener("click", () => {
+    $("startBtn").addEventListener("click", () => {
 
       welcome.classList.add("hidden");
 
@@ -462,7 +468,7 @@
 
     });
 
-    document.getElementById("backBtn").addEventListener("click", () => {
+    $("backBtn").addEventListener("click", () => {
 
       quiz.classList.add("hidden");
 
@@ -470,29 +476,33 @@
 
     });
 
-    document.getElementById("restartBtn").addEventListener("click", () => {
+    $("editBtn").addEventListener("click", () => {
 
       results.classList.add("hidden");
-
-      productList.replaceChildren();
 
       quiz.classList.remove("hidden");
 
     });
 
-    function formatPrice(price, currency) {
+    function euro(value) {
 
       return new Intl.NumberFormat("es-ES", {
 
         style: "currency",
 
-        currency: currency || "EUR"
+        currency: "EUR"
 
-      }).format(Number(price));
+      }).format(value);
 
     }
 
-    function makeProductCard(product) {
+    function normalize(value) {
+
+      return String(value || "").trim().toLowerCase();
+
+    }
+
+    function createCard(product, profile) {
 
       const card = document.createElement("article");
 
@@ -506,31 +516,57 @@
 
       price.className = "price";
 
-      price.textContent = formatPrice(product.price, product.currency);
+      price.textContent = euro(Number(product.price));
 
-      const merchant = document.createElement("div");
+      const store = document.createElement("div");
 
-      merchant.className = "merchant";
+      store.className = "muted small";
 
-      merchant.textContent = "Tienda: " + (product.merchant || product.store || "Consultar tienda");
+      store.textContent = "Tienda: " +
+
+        (product.merchant || product.store || "No especificada");
 
       const description = document.createElement("p");
 
-      description.className = "description";
+      description.className = "muted";
 
-      description.textContent = product.description || "Producto deportivo.";
+      description.textContent =
+
+        product.description || "Consulta los detalles en la tienda.";
+
+      const reason = document.createElement("div");
+
+      reason.className = "reason";
+
+      let reasonText = "Encaja con el deporte seleccionado y está dentro de tu presupuesto.";
+
+      if (profile.goal === "daily") {
+
+        reasonText = "Opción a considerar para tus entrenamientos habituales, según la descripción del producto.";
+
+      } else if (profile.goal === "performance") {
+
+        reasonText = "Compara sus características con tus necesidades de rendimiento antes de elegir.";
+
+      } else if (profile.goal === "competition") {
+
+        reasonText = "Antes de competir, comprueba que sus características y ajuste sean adecuados para tu disciplina.";
+
+      }
+
+      reason.textContent = reasonText;
 
       const status = document.createElement("div");
 
-      status.className = "status";
+      status.className = "muted small";
 
       status.textContent = product.priceVerified
 
-        ? "Precio marcado como verificado; comprueba la tienda."
+        ? "Precio marcado como verificado; confirma el precio final en la tienda."
 
-        : "Precio pendiente de verificar en la tienda.";
+        : "Precio pendiente de verificar. Confirma el precio final en la tienda.";
 
-      card.append(name, price, merchant, description, status);
+      card.append(name, price, store, description, reason, status);
 
       const url = product.productUrl || product.url;
 
@@ -552,7 +588,7 @@
 
             link.rel = "noopener noreferrer";
 
-            link.textContent = "Ver en la tienda";
+            link.textContent = "Ver producto en la tienda";
 
             card.appendChild(link);
 
@@ -566,111 +602,129 @@
 
     }
 
-    async function loadProducts() {
+    async function getCatalog() {
 
       const response = await fetch("./products.json", { cache: "no-store" });
 
-      if (!response.ok) throw new Error("No se pudo encontrar products.json");
+      if (!response.ok) throw new Error("No se pudo cargar products.json");
 
-      const products = await response.json();
+      const data = await response.json();
 
-      if (!Array.isArray(products)) throw new Error("El catálogo debe ser una lista JSON");
+      if (!Array.isArray(data)) {
 
-      return products;
+        throw new Error("El catálogo no tiene el formato esperado");
+
+      }
+
+      return data;
 
     }
 
-    document.getElementById("recommendBtn").addEventListener("click", async () => {
+    $("recommendBtn").addEventListener("click", async () => {
 
-      quizError.classList.add("hidden");
+      const profile = {
 
-      const sport = document.getElementById("sport").value;
+        sport: normalize($("sport").value),
 
-      const budget = Number(document.getElementById("budget").value);
+        budget: Number($("budget").value),
 
-      const level = document.getElementById("level").value;
+        level: $("level").value,
 
-      const purpose = document.getElementById("purpose").value;
+        goal: $("goal").value
+
+      };
 
       quiz.classList.add("hidden");
 
+      welcome.classList.add("hidden");
+
       results.classList.remove("hidden");
 
-      productList.replaceChildren();
+      $("productList").replaceChildren();
 
-      empty.classList.add("hidden");
+      $("empty").classList.add("hidden");
 
-      loadError.classList.add("hidden");
+      $("loadError").classList.add("hidden");
 
-      loading.classList.remove("hidden");
+      $("loading").classList.remove("hidden");
 
-      const levelText = {
+      $("intro").textContent =
 
-        beginner: "principiante",
+        "Hemos buscado en el catálogo productos del deporte que elegiste, con un precio dentro de tu presupuesto. Las opciones se ordenan de menor a mayor precio.";
 
-        regular: "práctica regular",
+      $("summary").replaceChildren();
 
-        advanced: "nivel avanzado"
+      [
 
-      }[level];
+        "Deporte: " + $("sport").selectedOptions[0].textContent,
 
-      const purposeText = {
+        "Presupuesto: " + (profile.budget === 1000 ? "sin límite fijado" : "hasta " + euro(profile.budget)),
 
-        daily: "entrenamiento habitual",
+        "Nivel: " + $("level").selectedOptions[0].textContent,
 
-        performance: "mejorar el rendimiento",
+        "Objetivo: " + $("goal").selectedOptions[0].textContent
 
-        competition: "competición"
+      ].forEach(text => {
 
-      }[purpose];
+        const chip = document.createElement("span");
 
-      document.getElementById("summary").textContent =
+        chip.className = "chip";
 
-        "Deporte: " + sport + " · Presupuesto máximo: " +
+        chip.textContent = text;
 
-        (budget === 1000 ? "sin límite fijado" : formatPrice(budget, "EUR")) +
+        $("summary").appendChild(chip);
 
-        " · Nivel: " + levelText + " · Objetivo: " + purposeText + ".";
+      });
 
       try {
 
-        allProducts = await loadProducts();
+        const catalog = await getCatalog();
 
-        const matches = allProducts.filter(product => {
+        const matches = catalog.filter(product => {
 
           const price = Number(product.price);
 
-          return product.sport &&
-
-            product.sport.toLowerCase() === sport &&
+          return normalize(product.sport) === profile.sport &&
 
             Number.isFinite(price) &&
 
             price >= 0 &&
 
-            price <= budget;
+            price <= profile.budget;
 
         });
 
         matches.sort((a, b) => Number(a.price) - Number(b.price));
 
-        loading.classList.add("hidden");
+        $("loading").classList.add("hidden");
 
-        if (matches.length === 0) {
+        if (!matches.length) {
 
-          empty.classList.remove("hidden");
+          $("empty").textContent =
 
-        } else {
+            "Todavía no tenemos productos de " +
 
-          matches.forEach(product => productList.appendChild(makeProductCard(product)));
+            $("sport").selectedOptions[0].textContent +
+
+            " que coincidan con ese presupuesto. Prueba aumentando el presupuesto o elige otro deporte. No mostraremos productos de otra disciplina como si fueran adecuados.";
+
+          $("empty").classList.remove("hidden");
+
+          return;
 
         }
 
+        matches.forEach(product => {
+
+          $("productList").appendChild(createCard(product, profile));
+
+        });
+
       } catch (error) {
 
-        loading.classList.add("hidden");
+        $("loading").classList.add("hidden");
 
-        loadError.classList.remove("hidden");
+        $("loadError").classList.remove("hidden");
 
       }
 
