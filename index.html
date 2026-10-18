@@ -6,294 +6,720 @@
 
 <head>
 
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="theme-color" content="#101827">
+  <meta name="theme-color" content="#101827">
 
-<title>GearWise | Encuentra tu equipo ideal</title>
+  <meta name="description" content="GearWise te ayuda a comparar productos deportivos según tu presupuesto.">
 
-<style>
+  <title>GearWise | Encuentra tu equipo deportivo</title>
 
-:root{--bg:#101827;--panel:#1b2638;--green:#b8f36b;--muted:#b4bfd0}
+  <style>
 
-*{box-sizing:border-box}
+    :root {
 
-body{margin:0;background:var(--bg);color:#f7f9fc;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
+      --bg: #101827;
 
-header,main,footer{width:min(100% - 32px,850px);margin:auto}
+      --panel: #192438;
 
-header{padding:24px 0;display:flex;justify-content:space-between;align-items:center}
+      --text: #f5f7fa;
 
-.logo{font-size:26px;font-weight:850}.logo span,h1 span{color:var(--green)}
+      --muted: #aab6c7;
 
-.tag{border:1px solid #42516a;border-radius:20px;padding:5px 10px;color:var(--muted);font-size:12px}
+      --accent: #c6f36b;
 
-.hero{padding:36px 0 20px}.eyebrow{color:var(--green);font-size:12px;font-weight:800;letter-spacing:2px}
+      --border: #304057;
 
-h1{font-size:clamp(36px,8vw,64px);line-height:1.08;letter-spacing:-2px;margin:12px 0}
+    }
 
-.intro,.muted{color:var(--muted)}
+    * {
 
-.panel{background:var(--panel);border:1px solid #344158;border-radius:18px;padding:22px;margin:20px 0}
+      box-sizing: border-box;
 
-label{display:block;font-weight:700;margin:16px 0 7px}
+    }
 
-select,button{width:100%;min-height:48px;padding:12px;border-radius:10px;font:inherit}
+    body {
 
-select{background:#111b2b;color:white;border:1px solid #46536a}
+      margin: 0;
 
-button{border:0;background:var(--green);color:#15200c;font-weight:800;margin-top:20px;cursor:pointer}
+      background: var(--bg);
 
-.results{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:14px}
+      color: var(--text);
 
-.product{padding:18px;background:#1b2638;border:1px solid #344158;border-radius:14px}
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
 
-.product h3{margin:6px 0}.price{color:var(--green);font-size:21px;font-weight:850}
+        sans-serif;
 
-.pill{display:inline-block;border:1px solid #46536a;border-radius:20px;padding:3px 9px;color:var(--muted);font-size:12px}
+      line-height: 1.6;
 
-.notice{background:#2c2a1b;border:1px solid #62582d;color:#f5e7a9;border-radius:10px;padding:13px;font-size:13px}
+    }
 
-footer{padding:28px 0;color:var(--muted);font-size:13px}
+    header {
 
-[hidden]{display:none!important}
+      padding: 22px 20px;
 
-</style>
+      border-bottom: 1px solid var(--border);
+
+    }
+
+    .nav {
+
+      max-width: 900px;
+
+      margin: auto;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 12px;
+
+    }
+
+    .logo {
+
+      color: var(--accent);
+
+      font-size: 1.6rem;
+
+      font-weight: 800;
+
+      letter-spacing: -1px;
+
+    }
+
+    .tag {
+
+      color: var(--muted);
+
+      font-size: 0.85rem;
+
+    }
+
+    main {
+
+      max-width: 900px;
+
+      margin: auto;
+
+      padding: 35px 20px 60px;
+
+    }
+
+    .hero {
+
+      padding: 25px 0 30px;
+
+    }
+
+    .eyebrow {
+
+      color: var(--accent);
+
+      font-weight: 700;
+
+      text-transform: uppercase;
+
+      font-size: 0.8rem;
+
+      letter-spacing: 1.5px;
+
+    }
+
+    h1 {
+
+      margin: 10px 0;
+
+      font-size: clamp(2.2rem, 8vw, 4rem);
+
+      line-height: 1.1;
+
+      letter-spacing: -2px;
+
+    }
+
+    h1 span {
+
+      color: var(--accent);
+
+    }
+
+    .intro {
+
+      max-width: 580px;
+
+      color: var(--muted);
+
+      font-size: 1.05rem;
+
+    }
+
+    .panel {
+
+      background: var(--panel);
+
+      border: 1px solid var(--border);
+
+      border-radius: 18px;
+
+      padding: 22px;
+
+      margin-top: 20px;
+
+    }
+
+    h2 {
+
+      margin-top: 0;
+
+    }
+
+    .form-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+
+      gap: 18px;
+
+    }
+
+    label {
+
+      display: block;
+
+      margin-bottom: 7px;
+
+      font-weight: 650;
+
+    }
+
+    input,
+
+    select {
+
+      width: 100%;
+
+      min-height: 48px;
+
+      padding: 12px;
+
+      border: 1px solid var(--border);
+
+      border-radius: 10px;
+
+      background: #101827;
+
+      color: var(--text);
+
+      font: inherit;
+
+    }
+
+    input:focus,
+
+    select:focus,
+
+    button:focus-visible,
+
+    a:focus-visible {
+
+      outline: 2px solid var(--accent);
+
+      outline-offset: 3px;
+
+    }
+
+    .hint {
+
+      color: var(--muted);
+
+      font-size: 0.85rem;
+
+      margin: 6px 0 0;
+
+    }
+
+    button {
+
+      width: 100%;
+
+      min-height: 50px;
+
+      margin-top: 22px;
+
+      padding: 12px 18px;
+
+      border: 0;
+
+      border-radius: 10px;
+
+      background: var(--accent);
+
+      color: #152019;
+
+      font: inherit;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+    }
+
+    button:hover {
+
+      filter: brightness(1.05);
+
+    }
+
+    #resultsSection {
+
+      margin-top: 32px;
+
+    }
+
+    #summary {
+
+      color: var(--muted);
+
+    }
+
+    #results {
+
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+
+      gap: 16px;
+
+    }
+
+    .product {
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: flex-start;
+
+      background: var(--panel);
+
+      border: 1px solid var(--border);
+
+      border-radius: 14px;
+
+      padding: 18px;
+
+      overflow-wrap: anywhere;
+
+    }
+
+    .product h3 {
+
+      margin: 0 0 8px;
+
+      font-size: 1.15rem;
+
+    }
+
+    .price {
+
+      color: var(--accent);
+
+      font-size: 1.6rem;
+
+      font-weight: 800;
+
+      margin: 0 0 8px;
+
+    }
+
+    .product p {
+
+      margin: 5px 0 12px;
+
+    }
+
+    .product .notice {
+
+      color: var(--muted);
+
+      font-size: 0.82rem;
+
+    }
+
+    .product a {
+
+      margin-top: auto;
+
+      padding-top: 10px;
+
+      color: var(--accent);
+
+      font-weight: 700;
+
+    }
+
+    .empty {
+
+      padding: 18px;
+
+      border: 1px dashed var(--border);
+
+      border-radius: 12px;
+
+      color: var(--muted);
+
+    }
+
+    footer {
+
+      border-top: 1px solid var(--border);
+
+      padding: 24px 20px;
+
+      text-align: center;
+
+      color: var(--muted);
+
+      font-size: 0.85rem;
+
+    }
+
+    footer p {
+
+      max-width: 700px;
+
+      margin: 6px auto;
+
+    }
+
+  </style>
 
 </head>
 
 <body>
 
-<header>
+  <header>
 
-  <div class="logo">Gear<span>Wise</span></div>
+    <div class="nav">
 
-  <div class="tag">BETA · GRATIS</div>
+      <div class="logo">GearWise<span>®</span></div>
 
-</header>
+      <div class="tag">Tu equipo. Tu presupuesto.</div>
 
-<main>
+    </div>
 
-  <section class="hero">
+  </header>
 
-    <div class="eyebrow">EQUÍPATE CON CRITERIO</div>
+  <main>
 
-    <h1>Tu deporte.<br>Tu presupuesto.<br><span>Tu mejor elección.</span></h1>
+    <section class="hero">
 
-    <p class="intro">Encuentra material deportivo adaptado a tus necesidades. Compara opciones según tu presupuesto y descubre por dónde empezar.</p>
+      <div class="eyebrow">Compra con cabeza</div>
 
-  </section>
+      <h1>Encuentra tu equipo.<br><span>Sin gastar de más.</span></h1>
 
-  <section class="panel">
+      <p class="intro">
 
-    <h2>Encuentra tu equipo</h2>
+        Dinos qué deporte practicas y cuánto quieres gastar.
 
-    <form id="searchForm">
+        GearWise te ayuda a comparar las opciones disponibles.
 
-      <label for="sport">¿Qué deporte practicas?</label>
+      </p>
 
-      <select id="sport">
+    </section>
 
-        <option value="running">Running</option>
+    <section class="panel">
 
-        <option value="fitness">Entrenamiento en casa</option>
+      <h2>Encuentra tu producto</h2>
 
-        <option value="cycling">Ciclismo recreativo</option>
+      <form id="searchForm">
 
-      </select>
+        <div class="form-grid">
 
-      <label for="budget">Presupuesto máximo</label>
+          <div>
 
-      <select id="budget">
+            <label for="sport">Deporte</label>
 
-        <option value="50">Hasta 50 €</option>
+            <select id="sport" name="sport" required>
 
-        <option value="100" selected>Hasta 100 €</option>
+              <option value="running">Running</option>
 
-        <option value="150">Hasta 150 €</option>
+            </select>
 
-        <option value="300">Hasta 300 €</option>
+          </div>
 
-      </select>
+          <div>
 
-      <label for="priority">¿Qué valoras más?</label>
+            <label for="budget">Tu presupuesto (€)</label>
 
-      <select id="priority">
+            <input
 
-        <option value="balance">Calidad-precio</option>
+              id="budget"
 
-        <option value="cheap">Precio más bajo</option>
+              name="budget"
 
-        <option value="durable">Durabilidad orientativa</option>
+              type="number"
 
-        <option value="beginner">Para principiantes</option>
+              min="0.01"
 
-      </select>
+              max="10000"
 
-      <button type="submit">Ver mis recomendaciones →</button>
+              step="0.01"
 
-    </form>
+              value="80"
 
-  </section>
+              placeholder="Ej.: 80"
 
-  <section id="resultsSection" hidden>
+              required
 
-    <h2>Tus recomendaciones</h2>
+            >
 
-    <p id="summary" class="muted"></p>
+            <p class="hint">Escribe la cantidad que quieras, en euros.</p>
 
-    <div id="results" class="results"></div>
+          </div>
 
-    <p class="notice">Importante: este catálogo contiene ejemplos de demostración, no ofertas verificadas. Los precios, características y valoraciones no han sido comprobados con vendedores. Verifica los datos antes de comprar.</p>
+          <div>
 
-  </section>
+            <label for="priority">Ordenar resultados</label>
 
-</main>
+            <select id="priority" name="priority">
 
-<footer>GearWise · Una forma más inteligente de elegir tu equipo.<br>Esta versión no utiliza precios en tiempo real ni contiene enlaces de afiliado.</footer>
+              <option value="cheap">Precio más bajo primero</option>
 
+              <option value="expensive">Precio más alto primero</option>
 
+            </select>
 
-<script>
+          </div>
 
-async function loadProducts() {
+        </div>
 
-  const results = document.getElementById("results");
+        <button type="submit">Encontrar productos</button>
 
-  const summary = document.getElementById("summary");
+      </form>
 
-  const section = document.getElementById("resultsSection");
+    </section>
 
-  const form = document.getElementById("searchForm");
+    <section id="resultsSection" hidden>
 
-  try {
+      <h2>Tus resultados</h2>
 
-    const response = await fetch("./products.json");
+      <p id="summary" aria-live="polite"></p>
 
-    if (!response.ok) {
+      <div id="results"></div>
 
-      throw new Error("No se pudo cargar products.json");
+    </section>
 
-    }
+  </main>
 
-    const products = await response.json();
+  <footer>
 
-    form.addEventListener("submit", function(event) {
+    <p>GearWise te ayuda a comparar productos deportivos.</p>
 
-      event.preventDefault();
+    <p>Los precios y la disponibilidad pueden cambiar. Comprueba
 
-      const sport = document.getElementById("sport").value;
+      el importe final en la tienda antes de comprar.</p>
 
-      const budget = Number(document.getElementById("budget").value);
+    <p>GearWise puede incorporar enlaces de afiliados en el futuro.</p>
 
-      const priority = document.getElementById("priority").value;
+  </footer>
 
-      let matches = products.filter(function(product) {
+  <script>
 
-        return product.sport === sport &&
+    async function loadProducts() {
 
-          Number(product.price) <= budget;
+      const results = document.getElementById("results");
 
-      });
+      const summary = document.getElementById("summary");
 
-      matches.sort(function(a, b) {
+      const section = document.getElementById("resultsSection");
 
-        if (priority === "cheap") {
+      const form = document.getElementById("searchForm");
 
-          return Number(a.price) - Number(b.price);
+      let products = [];
+
+      try {
+
+        const response = await fetch("./products.json");
+
+        if (!response.ok) {
+
+          throw new Error("No se pudo cargar el catálogo");
 
         }
 
-        return Number(a.price) - Number(b.price);
+        products = await response.json();
 
-      });
+        if (!Array.isArray(products)) {
 
-      results.replaceChildren();
+          throw new Error("El catálogo no tiene el formato esperado");
 
-      summary.textContent =
+        }
 
-        matches.length + " productos del catálogo dentro de tu presupuesto.";
-
-      if (matches.length === 0) {
+      } catch (error) {
 
         results.textContent =
 
-          "No encontramos productos dentro de tu presupuesto.";
+          "No se pudo cargar el catálogo. Inténtalo de nuevo más tarde.";
+
+        section.hidden = false;
+
+        console.error(error);
+
+        return;
 
       }
 
-      matches.forEach(function(product) {
+      form.addEventListener("submit", function(event) {
 
-        const card = document.createElement("article");
+        event.preventDefault();
 
-        card.className = "product";
+        const sport = document.getElementById("sport").value;
 
-        const name = document.createElement("h3");
+        const budget = Number(document.getElementById("budget").value);
 
-        name.textContent = product.name;
+        const priority = document.getElementById("priority").value;
 
-        const price = document.createElement("p");
+        if (!Number.isFinite(budget) || budget <= 0) {
 
-        price.textContent =
+          summary.textContent = "Introduce un presupuesto válido.";
 
-          Number(product.price).toFixed(2).replace(".", ",") + " €";
+          results.replaceChildren();
 
-        const description = document.createElement("p");
+          section.hidden = false;
 
-        description.textContent = product.description;
+          return;
 
-        const notice = document.createElement("p");
+        }
 
-        notice.textContent = product.priceVerified
+        const matches = products
 
-          ? "Precio comprobado; puede cambiar en la tienda."
+          .filter(function(product) {
 
-          : "Precio pendiente de comprobación.";
+            return product.sport === sport &&
 
-        const link = document.createElement("a");
+              Number.isFinite(Number(product.price)) &&
 
-        link.href = product.productUrl;
+              Number(product.price) <= budget;
 
-        link.target = "_blank";
+          })
 
-        link.rel = "noopener noreferrer";
+          .sort(function(a, b) {
 
-        link.textContent = "Consultar producto en la tienda";
+            if (priority === "expensive") {
 
-        card.append(name, price, description, notice, link);
+              return Number(b.price) - Number(a.price);
 
-        results.appendChild(card);
+            }
+
+            return Number(a.price) - Number(b.price);
+
+          });
+
+        results.replaceChildren();
+
+        summary.textContent = matches.length +
+
+          (matches.length === 1
+
+            ? " producto dentro de tu presupuesto."
+
+            : " productos dentro de tu presupuesto.");
+
+        if (matches.length === 0) {
+
+          const message = document.createElement("p");
+
+          message.className = "empty";
+
+          message.textContent =
+
+            "No encontramos productos dentro de ese presupuesto. Prueba con otra cantidad.";
+
+          results.appendChild(message);
+
+        }
+
+        matches.forEach(function(product) {
+
+          const card = document.createElement("article");
+
+          card.className = "product";
+
+          const name = document.createElement("h3");
+
+          name.textContent = product.name;
+
+          const price = document.createElement("p");
+
+          price.className = "price";
+
+          price.textContent = Number(product.price)
+
+            .toLocaleString("es-ES", {
+
+              style: "currency",
+
+              currency: product.currency || "EUR"
+
+            });
+
+          const description = document.createElement("p");
+
+          description.textContent = product.description || "";
+
+          const notice = document.createElement("p");
+
+          notice.className = "notice";
+
+          notice.textContent = product.priceVerified
+
+            ? "Precio comprobado; puede cambiar en la tienda."
+
+            : "Precio pendiente de verificación.";
+
+          card.append(name, price, description, notice);
+
+          const link = document.createElement("a");
+
+          link.href = product.productUrl;
+
+          link.target = "_blank";
+
+          link.rel = "noopener noreferrer sponsored";
+
+          link.textContent = "Consultar producto en la tienda";
+
+          card.appendChild(link);
+
+          results.appendChild(card);
+
+        });
+
+        section.hidden = false;
+
+        section.scrollIntoView({
+
+          behavior: "smooth",
+
+          block: "start"
+
+        });
 
       });
 
-      section.hidden = false;
+    }
 
-      section.scrollIntoView({
+    loadProducts();
 
-        behavior: "smooth",
+  </script>
 
-        block: "start"
+</body>
 
-      });
-
-    });
-
-  } catch (error) {
-
-    results.textContent =
-
-      "No se pudo cargar el catálogo. Comprueba products.json.";
-
-    section.hidden = false;
-
-    console.error(error);
-
-  }
-
-}
-
-loadProducts();
-
-</script>
+</html>
