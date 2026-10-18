@@ -154,7 +154,160 @@ footer{padding:28px 0;color:var(--muted);font-size:13px}
 
 <footer>GearWise · Una forma más inteligente de elegir tu equipo.<br>Esta versión no utiliza precios en tiempo real ni contiene enlaces de afiliado.</footer>
 
+
 <script>
+
+async function loadProducts() {
+
+  const results = document.getElementById("results");
+
+  const summary = document.getElementById("summary");
+
+  const section = document.getElementById("resultsSection");
+
+  const form = document.getElementById("searchForm");
+
+  let products = [];
+
+  try {
+
+    const response = await fetch("./products.json");
+
+    if (!response.ok) {
+
+      throw new Error("No se pudo cargar el catálogo");
+
+    }
+
+    products = await response.json();
+
+  } catch (error) {
+
+    results.textContent =
+
+      "No se pudo cargar el catálogo. Comprueba que products.json existe y está guardado.";
+
+    section.hidden = false;
+
+    console.error(error);
+
+    return;
+
+  }
+
+  form.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const sport = document.getElementById("sport").value;
+
+    const budget = Number(document.getElementById("budget").value);
+
+    const priority = document.getElementById("priority").value;
+
+    let matches = products.filter(function(product) {
+
+      return product.sport === sport &&
+
+             Number(product.price) <= budget;
+
+    });
+
+    matches.sort(function(a, b) {
+
+      if (priority === "cheap") {
+
+        return a.price - b.price;
+
+      }
+
+      return a.price - b.price;
+
+    });
+
+    results.replaceChildren();
+
+    summary.textContent =
+
+      matches.length + " productos del catálogo dentro de tu presupuesto.";
+
+    if (matches.length === 0) {
+
+      const message = document.createElement("p");
+
+      message.textContent =
+
+        "No encontramos productos para estos filtros. Prueba con otro presupuesto.";
+
+      results.appendChild(message);
+
+    }
+
+    matches.forEach(function(product, index) {
+
+      const card = document.createElement("article");
+
+      card.className = "product";
+
+      const title = document.createElement("h3");
+
+      title.textContent = (index + 1) + ". " + product.name;
+
+      const price = document.createElement("div");
+
+      price.className = "price";
+
+      price.textContent = Number(product.price).toFixed(2) + " €";
+
+      const description = document.createElement("p");
+
+      description.textContent = product.description;
+
+      const merchant = document.createElement("p");
+
+      merchant.className = "muted";
+
+      merchant.textContent = "Tienda: " + product.merchant;
+
+      const notice = document.createElement("p");
+
+      notice.className = "muted";
+
+      notice.textContent = product.priceVerified
+
+        ? "Precio verificado."
+
+        : "Precio pendiente de verificación.";
+
+      const link = document.createElement("a");
+
+      link.href = product.productUrl;
+
+      link.target = "_blank";
+
+      link.rel = "noopener noreferrer";
+
+      link.textContent = "Consultar producto en la tienda";
+
+      link.style.color = "#b8f36b";
+
+      card.append(title, price, description, merchant, notice, link);
+
+      results.appendChild(card);
+
+    });
+
+    section.hidden = false;
+
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  });
+
+}
+
+loadProducts();
+
+</script>
 
 const products=[
 
