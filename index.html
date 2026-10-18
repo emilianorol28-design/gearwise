@@ -6,111 +6,279 @@
 
 <head>
 
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>GearWise - Tu equipo ideal</title>
+<meta name="theme-color" content="#101827">
 
-  <style>
+<title>GearWise | Encuentra tu equipo ideal</title>
 
-    body {
+<style>
 
-      margin: 0;
+:root{--bg:#101827;--panel:#1b2638;--green:#b8f36b;--muted:#b4bfd0}
 
-      padding: 30px 20px;
+*{box-sizing:border-box}
 
-      background: #101827;
+body{margin:0;background:var(--bg);color:#f7f9fc;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
 
-      color: white;
+header,main,footer{width:min(100% - 32px,850px);margin:auto}
 
-      font-family: Arial, sans-serif;
+header{padding:24px 0;display:flex;justify-content:space-between;align-items:center}
 
-      text-align: center;
+.logo{font-size:26px;font-weight:850}.logo span,h1 span{color:var(--green)}
 
-    }
+.tag{border:1px solid #42516a;border-radius:20px;padding:5px 10px;color:var(--muted);font-size:12px}
 
-    .logo { font-size: 32px; font-weight: bold; }
+.hero{padding:36px 0 20px}.eyebrow{color:var(--green);font-size:12px;font-weight:800;letter-spacing:2px}
 
-    .logo span, h1 span { color: #b8f36b; }
+h1{font-size:clamp(36px,8vw,64px);line-height:1.08;letter-spacing:-2px;margin:12px 0}
 
-    main {
+.intro,.muted{color:var(--muted)}
 
-      max-width: 600px;
+.panel{background:var(--panel);border:1px solid #344158;border-radius:18px;padding:22px;margin:20px 0}
 
-      margin: 50px auto;
+label{display:block;font-weight:700;margin:16px 0 7px}
 
-      padding: 25px;
+select,button{width:100%;min-height:48px;padding:12px;border-radius:10px;font:inherit}
 
-      background: #1b2638;
+select{background:#111b2b;color:white;border:1px solid #46536a}
 
-      border-radius: 18px;
+button{border:0;background:var(--green);color:#15200c;font-weight:800;margin-top:20px;cursor:pointer}
 
-    }
+.results{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:14px}
 
-    p { color: #c1cad8; line-height: 1.6; }
+.product{padding:18px;background:#1b2638;border:1px solid #344158;border-radius:14px}
 
-    select, button {
+.product h3{margin:6px 0}.price{color:var(--green);font-size:21px;font-weight:850}
 
-      width: 100%;
+.pill{display:inline-block;border:1px solid #46536a;border-radius:20px;padding:3px 9px;color:var(--muted);font-size:12px}
 
-      padding: 14px;
+.notice{background:#2c2a1b;border:1px solid #62582d;color:#f5e7a9;border-radius:10px;padding:13px;font-size:13px}
 
-      margin-top: 12px;
+footer{padding:28px 0;color:var(--muted);font-size:13px}
 
-      border-radius: 9px;
+[hidden]{display:none!important}
 
-      font-size: 16px;
-
-    }
-
-    button {
-
-      background: #b8f36b;
-
-      border: 0;
-
-      font-weight: bold;
-
-    }
-
-  </style>
+</style>
 
 </head>
 
 <body>
 
+<header>
+
   <div class="logo">Gear<span>Wise</span></div>
 
-  <main>
+  <div class="tag">BETA · GRATIS</div>
 
-    <p>TU ASISTENTE DE COMPRAS DEPORTIVAS</p>
+</header>
+
+<main>
+
+  <section class="hero">
+
+    <div class="eyebrow">EQUÍPATE CON CRITERIO</div>
 
     <h1>Tu deporte.<br>Tu presupuesto.<br><span>Tu mejor elección.</span></h1>
 
-    <p>Encuentra material deportivo adaptado a ti y a tu presupuesto.</p>
+    <p class="intro">Encuentra material deportivo adaptado a tus necesidades. Compara opciones según tu presupuesto y descubre por dónde empezar.</p>
 
-    <label for="sport">¿Qué deporte practicas?</label>
+  </section>
 
-    <select id="sport">
+  <section class="panel">
 
-      <option>Running</option>
+    <h2>Encuentra tu equipo</h2>
 
-      <option>Entrenamiento en casa</option>
+    <form id="searchForm">
 
-      <option>Ciclismo recreativo</option>
+      <label for="sport">¿Qué deporte practicas?</label>
 
-    </select>
+      <select id="sport">
 
-    <button onclick="document.getElementById('message').textContent='¡Perfecto! GearWise te ayudará a comparar opciones de tu deporte.'">
+        <option value="running">Running</option>
 
-      Encontrar mi equipo
+        <option value="fitness">Entrenamiento en casa</option>
 
-    </button>
+        <option value="cycling">Ciclismo recreativo</option>
 
-    <p id="message"></p>
+      </select>
 
-  </main>
+      <label for="budget">Presupuesto máximo</label>
+
+      <select id="budget">
+
+        <option value="50">Hasta 50 €</option>
+
+        <option value="100" selected>Hasta 100 €</option>
+
+        <option value="150">Hasta 150 €</option>
+
+        <option value="300">Hasta 300 €</option>
+
+      </select>
+
+      <label for="priority">¿Qué valoras más?</label>
+
+      <select id="priority">
+
+        <option value="balance">Calidad-precio</option>
+
+        <option value="cheap">Precio más bajo</option>
+
+        <option value="durable">Durabilidad orientativa</option>
+
+        <option value="beginner">Para principiantes</option>
+
+      </select>
+
+      <button type="submit">Ver mis recomendaciones →</button>
+
+    </form>
+
+  </section>
+
+  <section id="resultsSection" hidden>
+
+    <h2>Tus recomendaciones</h2>
+
+    <p id="summary" class="muted"></p>
+
+    <div id="results" class="results"></div>
+
+    <p class="notice">Importante: este catálogo contiene ejemplos de demostración, no ofertas verificadas. Los precios, características y valoraciones no han sido comprobados con vendedores. Verifica los datos antes de comprar.</p>
+
+  </section>
+
+</main>
+
+<footer>GearWise · Una forma más inteligente de elegir tu equipo.<br>Esta versión no utiliza precios en tiempo real ni contiene enlaces de afiliado.</footer>
+
+<script>
+
+const products=[
+
+{name:"Zapatillas básicas de running",sport:"running",price:45,durability:3,beginner:true,description:"Ejemplo de opción de entrada. Comprueba ajuste, comodidad y uso recomendado."},
+
+{name:"Zapatillas versátiles de running",sport:"running",price:85,durability:4,beginner:true,description:"Ejemplo de calzado polivalente para comparar para entrenamientos habituales."},
+
+{name:"Zapatillas avanzadas de running",sport:"running",price:140,durability:4,beginner:false,description:"Ejemplo de presupuesto superior. Compara comodidad y prestaciones reales."},
+
+{name:"Calcetines deportivos",sport:"running",price:15,durability:2,beginner:true,description:"Accesorio básico. Comprueba tejido, ajuste y composición."},
+
+{name:"Cinturón para correr",sport:"running",price:25,durability:3,beginner:true,description:"Puede ayudar a llevar llaves o pequeños objetos durante una carrera."},
+
+{name:"Bandas elásticas",sport:"fitness",price:20,durability:3,beginner:true,description:"Equipo compacto para ejercicios de fuerza y movilidad."},
+
+{name:"Esterilla de entrenamiento",sport:"fitness",price:30,durability:3,beginner:true,description:"Superficie acolchada para ejercicios de suelo y estiramientos."},
+
+{name:"Mancuernas ajustables",sport:"fitness",price:90,durability:4,beginner:true,description:"Permiten variar la carga sin comprar muchas mancuernas separadas."},
+
+{name:"Comba de entrenamiento",sport:"fitness",price:12,durability:2,beginner:true,description:"Accesorio sencillo para entrenamientos cardiovasculares."},
+
+{name:"Banco de entrenamiento",sport:"fitness",price:110,durability:4,beginner:false,description:"Comprueba estabilidad, carga máxima y espacio disponible."},
+
+{name:"Luces para bicicleta",sport:"cycling",price:25,durability:3,beginner:true,description:"Ayudan a mejorar la visibilidad. Revisa autonomía y normativa local."},
+
+{name:"Bomba con manómetro",sport:"cycling",price:35,durability:4,beginner:true,description:"Permite medir y ajustar la presión de los neumáticos."},
+
+{name:"Casco de ciclismo",sport:"cycling",price:55,durability:4,beginner:true,description:"Prioriza el ajuste correcto y el cumplimiento de las normas de seguridad."},
+
+{name:"Kit básico de reparación",sport:"cycling",price:18,durability:3,beginner:true,description:"Un kit puede ayudar con pequeñas reparaciones durante una salida."},
+
+{name:"Bolsa para bicicleta",sport:"cycling",price:28,durability:3,beginner:true,description:"Comprueba capacidad, fijación y resistencia al agua."}
+
+];
+
+document.getElementById("searchForm").addEventListener("submit",function(event){
+
+event.preventDefault();
+
+const sport=document.getElementById("sport").value;
+
+const budget=Number(document.getElementById("budget").value);
+
+const priority=document.getElementById("priority").value;
+
+let matches=products.filter(p=>p.sport===sport&&p.price<=budget);
+
+matches.sort((a,b)=>{
+
+if(priority==="cheap")return a.price-b.price;
+
+if(priority==="durable")return b.durability-a.durability||a.price-b.price;
+
+if(priority==="beginner")return Number(b.beginner)-Number(a.beginner)||a.price-b.price;
+
+return (a.price/a.durability)-(b.price/b.durability);
+
+});
+
+const results=document.getElementById("results");
+
+results.replaceChildren();
+
+document.getElementById("summary").textContent=matches.length+" ejemplos dentro de tu presupuesto.";
+
+if(matches.length===0){
+
+const message=document.createElement("p");
+
+message.textContent="No hay ejemplos dentro de este presupuesto. Prueba un límite superior.";
+
+results.appendChild(message);
+
+}else{
+
+matches.forEach((p,i)=>{
+
+const card=document.createElement("article");
+
+card.className="product";
+
+const pill=document.createElement("span");
+
+pill.className="pill";
+
+pill.textContent=p.beginner?"Adecuado para comparar si empiezas":"Compara antes de elegir";
+
+const title=document.createElement("h3");
+
+title.textContent=(i+1)+". "+p.name;
+
+const price=document.createElement("div");
+
+price.className="price";
+
+price.textContent=p.price+" €";
+
+const desc=document.createElement("p");
+
+desc.textContent=p.description;
+
+const meta=document.createElement("p");
+
+meta.className="muted";
+
+meta.textContent="Durabilidad de ejemplo: "+p.durability+"/5 · Dato no verificado";
+
+card.append(pill,title,price,desc,meta);
+
+results.appendChild(card);
+
+});
+
+}
+
+const section=document.getElementById("resultsSection");
+
+section.hidden=false;
+
+section.scrollIntoView({behavior:"smooth",block:"start"});
+
+});
+
+</script>
 
 </body>
 
