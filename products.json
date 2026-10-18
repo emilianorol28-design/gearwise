@@ -89,5 +89,72 @@
     "priceVerified": false
 
   }
+  
+
+  {
+
+    "id": 5,
+
+    "name": "On Cloudrunner 3",
+
+    "sport": "running",
+
+    "price": 160,
+
+    "currency": "EUR",
+
+    "merchant": "On España",
+
+    "productUrl": "https://www.on.com/es-es/products/cloudrunner-3-m-3mg1007",
+
+    "priceVerified": false,
+
+    "description": "Zapatillas de running diario con amortiguación y estabilidad."
+
+  },
+
+  {
+
+    "id": 6,
+
+    "name": "adidas Adizero Boston 13",
+
+    "sport": "running",
+
+    "price": 120,
+
+    "currency": "EUR",
+
+    "merchant": "adidas España",
+
+    "productUrl": "https://www.adidas.es/zapatilla-adizero-boston-13/JQ1670.html",
+
+    "priceVerified": false,
+
+    "description": "Zapatillas de entrenamiento rápido para tiradas largas y sesiones de ritmo."
+
+  },
+
+  {
+
+    "id": 7,
+
+    "name": "adidas Adizero Adios Pro 5",
+
+    "sport": "running",
+
+    "price": 260,
+
+    "currency": "EUR",
+
+    "merchant": "adidas España",
+
+    "productUrl": "https://www.adidas.es/zapatilla-adizero-adios-pro-5/KJ7039.html",
+
+    "priceVerified": false,
+
+    "description": "Zapatillas de competición de alto rendimiento. Comprueba la fecha de disponibilidad."
+
+  }
 
 ]
