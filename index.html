@@ -10,7 +10,9 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>GearWise | Recomendaciones deportivas</title>
+  <meta name="theme-color" content="#0b1220">
+
+  <title>GearWise | Encuentra tu equipamiento</title>
 
   <style>
 
@@ -42,7 +44,7 @@
 
       color: var(--text);
 
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
 
     }
 
@@ -60,9 +62,9 @@
 
       font-size: 30px;
 
-      font-weight: 800;
+      font-weight: 900;
 
-      letter-spacing: -1px;
+      letter-spacing: -1.2px;
 
     }
 
@@ -78,11 +80,11 @@
 
     main {
 
-      width: min(1000px, 100%);
+      width: min(1050px, 100%);
 
       margin: auto;
 
-      padding: 28px 18px 55px;
+      padding: 28px 18px 60px;
 
     }
 
@@ -92,31 +94,51 @@
 
       border: 1px solid var(--border);
 
-      border-radius: 18px;
+      border-radius: 20px;
 
-      padding: 24px;
+      padding: 25px;
 
-      margin-bottom: 22px;
+      margin-bottom: 24px;
 
     }
 
     h1 {
 
-      font-size: clamp(30px, 5vw, 46px);
+      font-size: clamp(32px, 6vw, 48px);
 
-      line-height: 1.1;
+      letter-spacing: -1.4px;
+
+      line-height: 1.08;
+
+      margin: 15px 0;
+
+    }
+
+    h2 { letter-spacing: -.5px; }
+
+    .eyebrow {
+
+      color: var(--lime);
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      letter-spacing: 1.5px;
+
+      text-transform: uppercase;
 
     }
 
     .hidden { display: none !important; }
 
-    .step { margin: 22px 0; }
+    .step { margin: 23px 0; }
 
     label {
 
       display: block;
 
-      font-weight: 700;
+      font-weight: 750;
 
       margin-bottom: 10px;
 
@@ -128,7 +150,7 @@
 
       padding: 14px;
 
-      border-radius: 10px;
+      border-radius: 11px;
 
       border: 1px solid var(--border);
 
@@ -146,15 +168,15 @@
 
       border: 0;
 
-      border-radius: 10px;
+      border-radius: 11px;
 
-      padding: 14px 18px;
+      padding: 14px 19px;
 
       background: var(--lime);
 
       color: #17200a;
 
-      font-weight: 800;
+      font-weight: 850;
 
       font-size: 15px;
 
@@ -162,7 +184,11 @@
 
       cursor: pointer;
 
+      text-align: center;
+
     }
+
+    button:hover, .buy:hover { filter: brightness(.95); }
 
     button.secondary {
 
@@ -192,7 +218,7 @@
 
       gap: 8px;
 
-      margin: 18px 0;
+      margin: 17px 0;
 
     }
 
@@ -208,77 +234,229 @@
 
       font-size: 13px;
 
+      color: var(--text);
+
+    }
+
+    .results-heading {
+
+      display: flex;
+
+      align-items: end;
+
+      justify-content: space-between;
+
+      flex-wrap: wrap;
+
+      gap: 10px;
+
     }
 
     .products {
 
       display: grid;
 
-      grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
 
-      gap: 16px;
+      gap: 18px;
 
     }
 
     .product {
 
+      position: relative;
+
       display: flex;
 
       flex-direction: column;
 
-      gap: 12px;
+      min-width: 0;
 
-      background: var(--panel);
-
-      border: 1px solid var(--border);
-
-      border-radius: 16px;
+      gap: 13px;
 
       padding: 20px;
 
+      background: linear-gradient(160deg, #17243a, #101a2b);
+
+      border: 1px solid var(--border);
+
+      border-radius: 18px;
+
+      transition: transform .18s ease, border-color .18s ease;
+
     }
 
-    .product h3 { margin: 0; font-size: 20px; }
+    .product:hover {
 
-    .price {
+      transform: translateY(-3px);
+
+      border-color: #698442;
+
+    }
+
+    .product-top {
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: start;
+
+      gap: 10px;
+
+    }
+
+    .brand {
 
       color: var(--lime);
 
-      font-size: 26px;
+      font-size: 12px;
+
+      font-weight: 850;
+
+      text-transform: uppercase;
+
+      letter-spacing: 1.2px;
+
+    }
+
+    .tag {
+
+      flex-shrink: 0;
+
+      border: 1px solid #536c35;
+
+      background: #23321a;
+
+      color: var(--lime);
+
+      border-radius: 30px;
+
+      padding: 6px 9px;
+
+      font-size: 11px;
 
       font-weight: 800;
 
     }
 
-    .muted.small { font-size: 13px; }
-
-    .reason {
+    .tag.neutral {
 
       background: var(--panel2);
 
-      padding: 12px;
+      border-color: var(--border);
+
+      color: var(--muted);
+
+    }
+
+    .product h3 {
+
+      margin: 0;
+
+      font-size: 21px;
+
+      line-height: 1.3;
+
+    }
+
+    .product-description {
+
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 14px;
+
+      line-height: 1.6;
+
+    }
+
+    .price-block {
+
+      padding: 15px 0;
+
+      border-top: 1px solid var(--border);
+
+      border-bottom: 1px solid var(--border);
+
+    }
+
+    .price-label {
+
+      color: var(--muted);
+
+      font-size: 12px;
+
+      margin-bottom: 5px;
+
+    }
+
+    .price {
+
+      font-size: 31px;
+
+      font-weight: 900;
+
+      letter-spacing: -.8px;
+
+      color: var(--lime);
+
+    }
+
+    .store {
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+    }
+
+    .reason {
+
+      background: rgba(199, 243, 107, .07);
+
+      border: 1px solid rgba(199, 243, 107, .15);
 
       border-radius: 10px;
 
-      font-size: 14px;
+      padding: 12px;
+
+      font-size: 13px;
 
       line-height: 1.5;
 
     }
 
-    .product .buy { margin-top: auto; text-align: center; }
+    .verification {
+
+      color: var(--muted);
+
+      font-size: 11px;
+
+      line-height: 1.5;
+
+    }
+
+    .product .buy {
+
+      width: 100%;
+
+      margin-top: auto;
+
+    }
 
     .notice {
 
-      padding: 15px;
+      padding: 16px;
 
-      border-radius: 10px;
+      border-radius: 12px;
 
       background: var(--panel2);
 
       color: var(--muted);
 
-      line-height: 1.5;
+      line-height: 1.6;
 
     }
 
@@ -286,7 +464,7 @@
 
     footer {
 
-      padding: 22px;
+      padding: 24px 18px;
 
       text-align: center;
 
@@ -295,6 +473,30 @@
       color: var(--muted);
 
       font-size: 13px;
+
+    }
+
+    @media (max-width: 500px) {
+
+      main { padding: 20px 13px 42px; }
+
+      .panel { padding: 19px; }
+
+      .products { grid-template-columns: 1fr; }
+
+      button.secondary { margin: 10px 0 0; }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *, *::before, *::after {
+
+        transition: none !important;
+
+        scroll-behavior: auto !important;
+
+      }
 
     }
 
@@ -308,7 +510,7 @@
 
     <div class="logo">Gear<span>Wise</span></div>
 
-    <p>Encuentra equipamiento que encaje contigo.</p>
+    <p>Equipamiento deportivo elegido para ti.</p>
 
   </header>
 
@@ -316,25 +518,29 @@
 
     <section id="welcome" class="panel">
 
-      <h1>Compra mejor.<br><span class="accent">Entrena a tu manera.</span></h1>
+      <div class="eyebrow">Tu próximo objetivo empieza aquí</div>
+
+      <h1>Encuentra tu equipamiento.<br><span class="accent">Entrena a tu manera.</span></h1>
 
       <p class="muted">
 
-        Dinos qué deporte practicas, cuánto quieres gastar y qué buscas.
+        Cuéntanos qué deporte practicas y cuánto quieres gastar.
 
-        Compararemos las opciones disponibles en nuestro catálogo.
+        Te ayudaremos a comparar las opciones disponibles.
 
       </p>
 
-      <button id="startBtn">Encontrar mi equipamiento</button>
+      <button id="startBtn">Encontrar mi equipamiento →</button>
 
     </section>
 
     <section id="quiz" class="panel hidden">
 
-      <h2>Tu perfil deportivo</h2>
+      <div class="eyebrow">Paso 1 · Personalización</div>
 
-      <p class="muted">Responde estas cuatro preguntas para personalizar los resultados.</p>
+      <h2>¿Qué estás buscando?</h2>
+
+      <p class="muted">Personaliza tu búsqueda en unos segundos.</p>
 
       <div class="step">
 
@@ -410,7 +616,7 @@
 
       </div>
 
-      <button id="recommendBtn">Ver mis recomendaciones</button>
+      <button id="recommendBtn">Ver mis recomendaciones →</button>
 
       <button id="backBtn" class="secondary">Volver</button>
 
@@ -420,7 +626,13 @@
 
       <div class="panel">
 
-        <h2>Tus <span class="accent">resultados</span></h2>
+        <div class="eyebrow">Paso 2 · Tus resultados</div>
+
+        <div class="results-heading">
+
+          <h2>Opciones para <span class="accent">ti</span></h2>
+
+        </div>
 
         <p id="intro" class="muted"></p>
 
@@ -444,6 +656,14 @@
 
       </p>
 
+      <p class="muted" style="font-size:12px;margin-top:18px">
+
+        Los precios y la disponibilidad pueden cambiar. Comprueba siempre el
+
+        importe final en la tienda antes de comprar.
+
+      </p>
+
     </section>
 
   </main>
@@ -454,33 +674,27 @@
 
     const $ = id => document.getElementById(id);
 
-    const welcome = $("welcome");
-
-    const quiz = $("quiz");
-
-    const results = $("results");
-
     $("startBtn").addEventListener("click", () => {
 
-      welcome.classList.add("hidden");
+      $("welcome").classList.add("hidden");
 
-      quiz.classList.remove("hidden");
+      $("quiz").classList.remove("hidden");
 
     });
 
     $("backBtn").addEventListener("click", () => {
 
-      quiz.classList.add("hidden");
+      $("quiz").classList.add("hidden");
 
-      welcome.classList.remove("hidden");
+      $("welcome").classList.remove("hidden");
 
     });
 
     $("editBtn").addEventListener("click", () => {
 
-      results.classList.add("hidden");
+      $("results").classList.add("hidden");
 
-      quiz.classList.remove("hidden");
+      $("quiz").classList.remove("hidden");
 
     });
 
@@ -502,15 +716,71 @@
 
     }
 
+    function getBrand(name) {
+
+      const first = String(name || "").trim().split(/\s+/)[0] || "Deportivo";
+
+      const brands = {
+
+        adidas: "adidas",
+
+        asics: "ASICS",
+
+        nike: "Nike",
+
+        kiprun: "KIPRUN",
+
+        on: "On"
+
+      };
+
+      return brands[first.toLowerCase()] || first;
+
+    }
+
     function createCard(product, profile) {
 
       const card = document.createElement("article");
 
       card.className = "product";
 
+      const top = document.createElement("div");
+
+      top.className = "product-top";
+
+      const brand = document.createElement("div");
+
+      brand.className = "brand";
+
+      brand.textContent = getBrand(product.name);
+
+      const tag = document.createElement("span");
+
+      tag.className = "tag";
+
+      tag.textContent = Number(product.price) <= 50 ? "Precio económico" : "Dentro de tu presupuesto";
+
+      top.append(brand, tag);
+
       const name = document.createElement("h3");
 
       name.textContent = product.name || "Producto deportivo";
+
+      const description = document.createElement("p");
+
+      description.className = "product-description";
+
+      description.textContent = product.description || "Consulta las características en la tienda.";
+
+      const priceBlock = document.createElement("div");
+
+      priceBlock.className = "price-block";
+
+      const priceLabel = document.createElement("div");
+
+      priceLabel.className = "price-label";
+
+      priceLabel.textContent = "Precio indicado";
 
       const price = document.createElement("div");
 
@@ -518,55 +788,45 @@
 
       price.textContent = euro(Number(product.price));
 
+      priceBlock.append(priceLabel, price);
+
       const store = document.createElement("div");
 
-      store.className = "muted small";
+      store.className = "store";
 
-      store.textContent = "Tienda: " +
+      store.textContent = "Disponible en: " +
 
-        (product.merchant || product.store || "No especificada");
-
-      const description = document.createElement("p");
-
-      description.className = "muted";
-
-      description.textContent =
-
-        product.description || "Consulta los detalles en la tienda.";
+        (product.merchant || product.store || "Tienda por confirmar");
 
       const reason = document.createElement("div");
 
       reason.className = "reason";
 
-      let reasonText = "Encaja con el deporte seleccionado y está dentro de tu presupuesto.";
-
       if (profile.goal === "daily") {
 
-        reasonText = "Opción a considerar para tus entrenamientos habituales, según la descripción del producto.";
+        reason.textContent = "Para entrenar habitualmente: revisa el ajuste, la comodidad y las características antes de elegir.";
 
       } else if (profile.goal === "performance") {
 
-        reasonText = "Compara sus características con tus necesidades de rendimiento antes de elegir.";
+        reason.textContent = "Para mejorar el rendimiento: compara las especificaciones del modelo con tus necesidades deportivas.";
 
-      } else if (profile.goal === "competition") {
+      } else {
 
-        reasonText = "Antes de competir, comprueba que sus características y ajuste sean adecuados para tu disciplina.";
+        reason.textContent = "Para competir: verifica que el modelo sea adecuado para tu disciplina y tus requisitos.";
 
       }
 
-      reason.textContent = reasonText;
+      const verification = document.createElement("div");
 
-      const status = document.createElement("div");
+      verification.className = "verification";
 
-      status.className = "muted small";
+      verification.textContent = product.priceVerified
 
-      status.textContent = product.priceVerified
+        ? "Precio marcado como verificado; confirma el importe final en la tienda."
 
-        ? "Precio marcado como verificado; confirma el precio final en la tienda."
+        : "Precio pendiente de verificar. Comprueba el importe actual en la tienda.";
 
-        : "Precio pendiente de verificar. Confirma el precio final en la tienda.";
-
-      card.append(name, price, store, description, reason, status);
+      card.append(top, name, description, priceBlock, store, reason, verification);
 
       const url = product.productUrl || product.url;
 
@@ -588,7 +848,7 @@
 
             link.rel = "noopener noreferrer";
 
-            link.textContent = "Ver producto en la tienda";
+            link.textContent = "Ver producto en la tienda ↗";
 
             card.appendChild(link);
 
@@ -634,11 +894,11 @@
 
       };
 
-      quiz.classList.add("hidden");
+      $("quiz").classList.add("hidden");
 
-      welcome.classList.add("hidden");
+      $("welcome").classList.add("hidden");
 
-      results.classList.remove("hidden");
+      $("results").classList.remove("hidden");
 
       $("productList").replaceChildren();
 
@@ -650,7 +910,7 @@
 
       $("intro").textContent =
 
-        "Hemos buscado en el catálogo productos del deporte que elegiste, con un precio dentro de tu presupuesto. Las opciones se ordenan de menor a mayor precio.";
+        "Estas opciones coinciden con el deporte y el presupuesto seleccionados. Están ordenadas de menor a mayor precio.";
 
       $("summary").replaceChildren();
 
@@ -706,7 +966,7 @@
 
             $("sport").selectedOptions[0].textContent +
 
-            " que coincidan con ese presupuesto. Prueba aumentando el presupuesto o elige otro deporte. No mostraremos productos de otra disciplina como si fueran adecuados.";
+            " dentro de ese presupuesto. Prueba aumentando el presupuesto o elige otro deporte.";
 
           $("empty").classList.remove("hidden");
 
@@ -720,7 +980,7 @@
 
         });
 
-      } catch (error) {
+      } catch (_) {
 
         $("loading").classList.add("hidden");
 
