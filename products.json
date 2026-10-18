@@ -10,17 +10,17 @@
 
     "sport": "running",
 
-    "price": 39.99,
+    "price": 54.99,
 
     "currency": "EUR",
 
     "merchant": "Decathlon España",
 
-    "productUrl": "https://www.decathlon.es/es/deportes/running/zapatillas-hombre",
+    "productUrl": "https://www.decathlon.es/es/p/zapatillas-running-adidas-runblaze-hombre-negro/361354/c1m8929086",
 
-    "priceVerified": false,
+    "priceVerified": true,
 
-    "description": "Opción económica para empezar a correr."
+    "description": "Zapatillas de running Adidas para hombre."
 
   },
 
@@ -32,45 +32,23 @@
 
     "sport": "running",
 
-    "price": 49.99,
-
-    "currency": "EUR",
-
-    "merchant": "Decathlon España",
-
-    "productUrl": "https://www.decathlon.es/es/deportes/running/zapatillas-hombre",
-
-    "priceVerified": false,
-
-    "description": "Opción para comparar zapatillas de running."
-
-  },
-
-  {
-
-    "id": 3,
-
-    "name": "KIPRUN Kipride",
-
-    "sport": "running",
-
     "price": 74.99,
 
     "currency": "EUR",
 
     "merchant": "Decathlon España",
 
-    "productUrl": "https://www.decathlon.es/es/deportes/running/zapatillas-hombre",
+    "productUrl": "https://www.decathlon.es/es/p/zapatillas-running-asics-gel-windhawk-hombre-negro-y-azul/361394/c1c5m9001312",
 
-    "priceVerified": false,
+    "priceVerified": true,
 
-    "description": "Alternativa para explorar dentro de la gama KIPRUN."
+    "description": "Zapatillas de running ASICS para hombre."
 
   },
 
   {
 
-    "id": 4,
+    "id": 3,
 
     "name": "KIPRUN Jogflow 100.1",
 
@@ -82,11 +60,11 @@
 
     "merchant": "Decathlon España",
 
-    "productUrl": "https://www.decathlon.es/es/deportes/running/zapatillas-hombre",
+    "productUrl": "https://www.decathlon.es/es/p/zapatillas-running-jogflow-100-1-hombre-negro-y-gris/337693/c382c227m8733464",
 
-    "priceVerified": false,
+    "priceVerified": true,
 
-    "description": "Alternativa de precio bajo para comparar."
+    "description": "Zapatillas de running KIPRUN para hombre."
 
   }
 
