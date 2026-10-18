@@ -1,0 +1,93 @@
+
+
+[
+
+  {
+
+    "id": "adidas-runblaze",
+
+    "name": "Adidas Runblaze",
+
+    "sport": "running",
+
+    "price": 39.99,
+
+    "currency": "EUR",
+
+    "merchant": "Decathlon España",
+
+    "productUrl": "https://www.decathlon.es/es/deportes/running/zapatillas-hombre",
+
+    "priceVerified": false,
+
+    "description": "Zapatillas de running para comparar dentro de un presupuesto ajustado."
+
+  },
+
+  {
+
+    "id": "asics-gel-windhawk",
+
+    "name": "ASICS GEL Windhawk",
+
+    "sport": "running",
+
+    "price": 49.99,
+
+    "currency": "EUR",
+
+    "merchant": "Decathlon España",
+
+    "productUrl": "https://www.decathlon.es/es/deportes/running/zapatillas-hombre",
+
+    "priceVerified": false,
+
+    "description": "Alternativa para comparar calzado de running en el rango de 50 euros."
+
+  },
+
+  {
+
+    "id": "kiprun-kipride",
+
+    "name": "KIPRUN Kipride",
+
+    "sport": "running",
+
+    "price": 74.99,
+
+    "currency": "EUR",
+
+    "merchant": "Decathlon España",
+
+    "productUrl": "https://www.decathlon.es/es/deportes/running/zapatillas-hombre",
+
+    "priceVerified": false,
+
+    "description": "Opción de presupuesto medio para comparar características y comodidad."
+
+  },
+
+  {
+
+    "id": "kiprun-jogflow-100",
+
+    "name": "KIPRUN Jogflow 100.1",
+
+    "sport": "running",
+
+    "price": 14.99,
+
+    "currency": "EUR",
+
+    "merchant": "Decathlon España",
+
+    "productUrl": "https://www.decathlon.es/es/deportes/running/zapatillas-hombre",
+
+    "priceVerified": false,
+
+    "description": "Opción económica que conviene evaluar según el uso previsto."
+
+  }
+
+]
