@@ -155,6 +155,7 @@ footer{padding:28px 0;color:var(--muted);font-size:13px}
 <footer>GearWise · Una forma más inteligente de elegir tu equipo.<br>Esta versión no utiliza precios en tiempo real ni contiene enlaces de afiliado.</footer>
 
 
+
 <script>
 
 async function loadProducts() {
@@ -167,272 +168,132 @@ async function loadProducts() {
 
   const form = document.getElementById("searchForm");
 
-  let products = [];
-
   try {
 
     const response = await fetch("./products.json");
 
     if (!response.ok) {
 
-      throw new Error("No se pudo cargar el catálogo");
+      throw new Error("No se pudo cargar products.json");
 
     }
 
-    products = await response.json();
+    const products = await response.json();
+
+    form.addEventListener("submit", function(event) {
+
+      event.preventDefault();
+
+      const sport = document.getElementById("sport").value;
+
+      const budget = Number(document.getElementById("budget").value);
+
+      const priority = document.getElementById("priority").value;
+
+      let matches = products.filter(function(product) {
+
+        return product.sport === sport &&
+
+          Number(product.price) <= budget;
+
+      });
+
+      matches.sort(function(a, b) {
+
+        if (priority === "cheap") {
+
+          return Number(a.price) - Number(b.price);
+
+        }
+
+        return Number(a.price) - Number(b.price);
+
+      });
+
+      results.replaceChildren();
+
+      summary.textContent =
+
+        matches.length + " productos del catálogo dentro de tu presupuesto.";
+
+      if (matches.length === 0) {
+
+        results.textContent =
+
+          "No encontramos productos dentro de tu presupuesto.";
+
+      }
+
+      matches.forEach(function(product) {
+
+        const card = document.createElement("article");
+
+        card.className = "product";
+
+        const name = document.createElement("h3");
+
+        name.textContent = product.name;
+
+        const price = document.createElement("p");
+
+        price.textContent =
+
+          Number(product.price).toFixed(2).replace(".", ",") + " €";
+
+        const description = document.createElement("p");
+
+        description.textContent = product.description;
+
+        const notice = document.createElement("p");
+
+        notice.textContent = product.priceVerified
+
+          ? "Precio comprobado; puede cambiar en la tienda."
+
+          : "Precio pendiente de comprobación.";
+
+        const link = document.createElement("a");
+
+        link.href = product.productUrl;
+
+        link.target = "_blank";
+
+        link.rel = "noopener noreferrer";
+
+        link.textContent = "Consultar producto en la tienda";
+
+        card.append(name, price, description, notice, link);
+
+        results.appendChild(card);
+
+      });
+
+      section.hidden = false;
+
+      section.scrollIntoView({
+
+        behavior: "smooth",
+
+        block: "start"
+
+      });
+
+    });
 
   } catch (error) {
 
     results.textContent =
 
-      "No se pudo cargar el catálogo. Comprueba que products.json existe y está guardado.";
+      "No se pudo cargar el catálogo. Comprueba products.json.";
 
     section.hidden = false;
 
     console.error(error);
 
-    return;
-
   }
-
-  form.addEventListener("submit", function(event) {
-
-    event.preventDefault();
-
-    const sport = document.getElementById("sport").value;
-
-    const budget = Number(document.getElementById("budget").value);
-
-    const priority = document.getElementById("priority").value;
-
-    let matches = products.filter(function(product) {
-
-      return product.sport === sport &&
-
-             Number(product.price) <= budget;
-
-    });
-
-    matches.sort(function(a, b) {
-
-      if (priority === "cheap") {
-
-        return a.price - b.price;
-
-      }
-
-      return a.price - b.price;
-
-    });
-
-    results.replaceChildren();
-
-    summary.textContent =
-
-      matches.length + " productos del catálogo dentro de tu presupuesto.";
-
-    if (matches.length === 0) {
-
-      const message = document.createElement("p");
-
-      message.textContent =
-
-        "No encontramos productos para estos filtros. Prueba con otro presupuesto.";
-
-      results.appendChild(message);
-
-    }
-
-    matches.forEach(function(product, index) {
-
-      const card = document.createElement("article");
-
-      card.className = "product";
-
-      const title = document.createElement("h3");
-
-      title.textContent = (index + 1) + ". " + product.name;
-
-      const price = document.createElement("div");
-
-      price.className = "price";
-
-      price.textContent = Number(product.price).toFixed(2) + " €";
-
-      const description = document.createElement("p");
-
-      description.textContent = product.description;
-
-      const merchant = document.createElement("p");
-
-      merchant.className = "muted";
-
-      merchant.textContent = "Tienda: " + product.merchant;
-
-      const notice = document.createElement("p");
-
-      notice.className = "muted";
-
-      notice.textContent = product.priceVerified
-
-        ? "Precio verificado."
-
-        : "Precio pendiente de verificación.";
-
-      const link = document.createElement("a");
-
-      link.href = product.productUrl;
-
-      link.target = "_blank";
-
-      link.rel = "noopener noreferrer";
-
-      link.textContent = "Consultar producto en la tienda";
-
-      link.style.color = "#b8f36b";
-
-      card.append(title, price, description, merchant, notice, link);
-
-      results.appendChild(card);
-
-    });
-
-    section.hidden = false;
-
-    section.scrollIntoView({ behavior: "smooth", block: "start" });
-
-  });
 
 }
 
 loadProducts();
 
 </script>
-
-const products=[
-
-{name:"Zapatillas básicas de running",sport:"running",price:45,durability:3,beginner:true,description:"Ejemplo de opción de entrada. Comprueba ajuste, comodidad y uso recomendado."},
-
-{name:"Zapatillas versátiles de running",sport:"running",price:85,durability:4,beginner:true,description:"Ejemplo de calzado polivalente para comparar para entrenamientos habituales."},
-
-{name:"Zapatillas avanzadas de running",sport:"running",price:140,durability:4,beginner:false,description:"Ejemplo de presupuesto superior. Compara comodidad y prestaciones reales."},
-
-{name:"Calcetines deportivos",sport:"running",price:15,durability:2,beginner:true,description:"Accesorio básico. Comprueba tejido, ajuste y composición."},
-
-{name:"Cinturón para correr",sport:"running",price:25,durability:3,beginner:true,description:"Puede ayudar a llevar llaves o pequeños objetos durante una carrera."},
-
-{name:"Bandas elásticas",sport:"fitness",price:20,durability:3,beginner:true,description:"Equipo compacto para ejercicios de fuerza y movilidad."},
-
-{name:"Esterilla de entrenamiento",sport:"fitness",price:30,durability:3,beginner:true,description:"Superficie acolchada para ejercicios de suelo y estiramientos."},
-
-{name:"Mancuernas ajustables",sport:"fitness",price:90,durability:4,beginner:true,description:"Permiten variar la carga sin comprar muchas mancuernas separadas."},
-
-{name:"Comba de entrenamiento",sport:"fitness",price:12,durability:2,beginner:true,description:"Accesorio sencillo para entrenamientos cardiovasculares."},
-
-{name:"Banco de entrenamiento",sport:"fitness",price:110,durability:4,beginner:false,description:"Comprueba estabilidad, carga máxima y espacio disponible."},
-
-{name:"Luces para bicicleta",sport:"cycling",price:25,durability:3,beginner:true,description:"Ayudan a mejorar la visibilidad. Revisa autonomía y normativa local."},
-
-{name:"Bomba con manómetro",sport:"cycling",price:35,durability:4,beginner:true,description:"Permite medir y ajustar la presión de los neumáticos."},
-
-{name:"Casco de ciclismo",sport:"cycling",price:55,durability:4,beginner:true,description:"Prioriza el ajuste correcto y el cumplimiento de las normas de seguridad."},
-
-{name:"Kit básico de reparación",sport:"cycling",price:18,durability:3,beginner:true,description:"Un kit puede ayudar con pequeñas reparaciones durante una salida."},
-
-{name:"Bolsa para bicicleta",sport:"cycling",price:28,durability:3,beginner:true,description:"Comprueba capacidad, fijación y resistencia al agua."}
-
-];
-
-document.getElementById("searchForm").addEventListener("submit",function(event){
-
-event.preventDefault();
-
-const sport=document.getElementById("sport").value;
-
-const budget=Number(document.getElementById("budget").value);
-
-const priority=document.getElementById("priority").value;
-
-let matches=products.filter(p=>p.sport===sport&&p.price<=budget);
-
-matches.sort((a,b)=>{
-
-if(priority==="cheap")return a.price-b.price;
-
-if(priority==="durable")return b.durability-a.durability||a.price-b.price;
-
-if(priority==="beginner")return Number(b.beginner)-Number(a.beginner)||a.price-b.price;
-
-return (a.price/a.durability)-(b.price/b.durability);
-
-});
-
-const results=document.getElementById("results");
-
-results.replaceChildren();
-
-document.getElementById("summary").textContent=matches.length+" ejemplos dentro de tu presupuesto.";
-
-if(matches.length===0){
-
-const message=document.createElement("p");
-
-message.textContent="No hay ejemplos dentro de este presupuesto. Prueba un límite superior.";
-
-results.appendChild(message);
-
-}else{
-
-matches.forEach((p,i)=>{
-
-const card=document.createElement("article");
-
-card.className="product";
-
-const pill=document.createElement("span");
-
-pill.className="pill";
-
-pill.textContent=p.beginner?"Adecuado para comparar si empiezas":"Compara antes de elegir";
-
-const title=document.createElement("h3");
-
-title.textContent=(i+1)+". "+p.name;
-
-const price=document.createElement("div");
-
-price.className="price";
-
-price.textContent=p.price+" €";
-
-const desc=document.createElement("p");
-
-desc.textContent=p.description;
-
-const meta=document.createElement("p");
-
-meta.className="muted";
-
-meta.textContent="Durabilidad de ejemplo: "+p.durability+"/5 · Dato no verificado";
-
-card.append(pill,title,price,desc,meta);
-
-results.appendChild(card);
-
-});
-
-}
-
-const section=document.getElementById("resultsSection");
-
-section.hidden=false;
-
-section.scrollIntoView({behavior:"smooth",block:"start"});
-
-});
-
-</script>
-
-</body>
-
-</html>
