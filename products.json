@@ -66,6 +66,23 @@
 
     "description": "Zapatillas de running KIPRUN para hombre."
 
-  }
+  },
+   {
+
+    "name": "Nike Revolution 7",
+
+    "price": 59.99,
+
+    "currency": "EUR",
+
+    "store": "Nike España",
+
+    "url": "https://www.nike.com/es/",
+
+    "description": "Zapatillas de running para entrenamientos diarios.",
+
+    "priceVerified": false
+
+   }
 
 ]
