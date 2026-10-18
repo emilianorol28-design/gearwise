@@ -1,1 +1,117 @@
 
+
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>GearWise - Tu equipo ideal</title>
+
+  <style>
+
+    body {
+
+      margin: 0;
+
+      padding: 30px 20px;
+
+      background: #101827;
+
+      color: white;
+
+      font-family: Arial, sans-serif;
+
+      text-align: center;
+
+    }
+
+    .logo { font-size: 32px; font-weight: bold; }
+
+    .logo span, h1 span { color: #b8f36b; }
+
+    main {
+
+      max-width: 600px;
+
+      margin: 50px auto;
+
+      padding: 25px;
+
+      background: #1b2638;
+
+      border-radius: 18px;
+
+    }
+
+    p { color: #c1cad8; line-height: 1.6; }
+
+    select, button {
+
+      width: 100%;
+
+      padding: 14px;
+
+      margin-top: 12px;
+
+      border-radius: 9px;
+
+      font-size: 16px;
+
+    }
+
+    button {
+
+      background: #b8f36b;
+
+      border: 0;
+
+      font-weight: bold;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="logo">Gear<span>Wise</span></div>
+
+  <main>
+
+    <p>TU ASISTENTE DE COMPRAS DEPORTIVAS</p>
+
+    <h1>Tu deporte.<br>Tu presupuesto.<br><span>Tu mejor elección.</span></h1>
+
+    <p>Encuentra material deportivo adaptado a ti y a tu presupuesto.</p>
+
+    <label for="sport">¿Qué deporte practicas?</label>
+
+    <select id="sport">
+
+      <option>Running</option>
+
+      <option>Entrenamiento en casa</option>
+
+      <option>Ciclismo recreativo</option>
+
+    </select>
+
+    <button onclick="document.getElementById('message').textContent='¡Perfecto! GearWise te ayudará a comparar opciones de tu deporte.'">
+
+      Encontrar mi equipo
+
+    </button>
+
+    <p id="message"></p>
+
+  </main>
+
+</body>
+
+</html>
