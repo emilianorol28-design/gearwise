@@ -765,6 +765,22 @@
       const name = document.createElement("h3");
 
       name.textContent = product.name || "Producto deportivo";
+      
+      
+      const imageUrl = product.imageUrl || product.image;
+      if (imageUrl) {
+        const image = document.createElement("img");
+        image.src = imageUrl;
+        image.alt = product.name || "Producto deportivo";
+        image.loading = "lazy";
+        image.style.width = "100%";
+        image.style.height = "190px";
+        image.style.objectFit = "contain";
+        image.style.borderRadius = "12px";
+        image.onerror = () => image.remove();
+        card.appendChild(image);
+      }
+
 
       const description = document.createElement("p");
 
