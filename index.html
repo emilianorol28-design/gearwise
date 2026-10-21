@@ -990,7 +990,8 @@
         
 const searchTerm = normalize($("productSearch").value.trim());
 
-const searchedMatches = matches.filter(product => {
+
+const searchedMatches = catalog.filter(product => {
   const name = normalize(product.name || "");
   const brand = normalize(product.brand || "");
   const merchant = normalize(product.merchant || "");
@@ -1003,30 +1004,6 @@ const searchedMatches = matches.filter(product => {
   );
 });
 
-
-        $("loading").classList.add("hidden");
-
-        if (!searchedMatches.length) {
-
-          $("empty").textContent =
-
-            "Todavía no tenemos productos de " +
-
-            $("sport").selectedOptions[0].textContent +
-
-            " dentro de ese presupuesto. Prueba aumentando el presupuesto o elige otro deporte.";
-
-          $("empty").classList.remove("hidden");
-
-          return;
-
-        }
-
-        searchedMatches.forEach(product => {
-
-          $("productList").appendChild(createCard(product, profile));
-
-        });
 
     
       } catch (_) {
