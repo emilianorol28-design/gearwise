@@ -989,6 +989,7 @@
 
         
 const searchTerm = normalize($("productSearch").value.trim());
+console.log("Texto buscado:", JSON.stringify(searchTerm));
 
 
 const searchedMatches = catalog.filter(product => {
