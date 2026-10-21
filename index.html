@@ -991,22 +991,39 @@
 const searchTerm = normalize($("productSearch").value.trim());
 console.log("Texto buscado:", JSON.stringify(searchTerm));
 
+const searchedMatches = searchTerm
+  ? catalog.filter(product => {
+      const name = normalize(product.name || "");
+      const brand = normalize(product.brand || "");
+      const merchant = normalize(product.merchant || "");
+      const searchWords = searchTerm.split(/\s+/).filter(Boolean);
+      return searchWords.every(word =>
+        name.includes(word) ||
+        brand.includes(word) ||
+        merchant.includes(word)
+      );
+    })
+  : matches;
 
-const searchedMatches = catalog.filter(product => {
-  const name = normalize(product.name || "");
-  const brand = normalize(product.brand || "");
-  const merchant = normalize(product.merchant || "");
-  const searchWords = searchTerm.split(/\s+/).filter(Boolean);
+          $("loading").classList.add("hidden");
 
-  return searchWords.every(word =>
-    name.includes(word) ||
-    brand.includes(word) ||
-    merchant.includes(word)
-  );
-});
+      if (!searchedMatches.length) {
+        $("empty").textContent = searchTerm
+          ? "No encontramos productos con esa marca o modelo."
+          : "No hay productos de este deporte dentro de ese presupuesto. Prueba aumentando el presupuesto o elige otro deporte.";
+        $("empty").classList.remove("hidden");
+        return;
+      }
 
+      $("empty").classList.add("hidden");
 
-    
+      searchedMatches.sort((a, b) => Number(a.price) - Number(b.price));
+
+      searchedMatches.forEach(product => {
+        $("productList").appendChild(createCard(product, profile));
+      });
+        
+      
       } catch (_) {
 
         $("loading").classList.add("hidden");
