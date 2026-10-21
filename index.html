@@ -1027,6 +1027,26 @@ const searchedMatches = matches.filter(product => {
 
     });
 
+    $("productSearch").addEventListener("input", () => {
+  const term = normalize($("productSearch").value.trim());
+  const cards = Array.from($("productList").children);
+  let visible = 0;
+
+  cards.forEach(card => {
+    const matches = normalize(card.textContent).includes(term);
+    card.classList.toggle("hidden", !matches);
+    if (matches) visible++;
+  });
+
+  if (cards.length > 0 && visible === 0) {
+    $("empty").textContent =
+      "No encontramos zapatillas con esa búsqueda. Prueba otra marca o modelo.";
+    $("empty").classList.remove("hidden");
+  } else {
+    $("empty").classList.add("hidden");
+  }
+});
+    
   </script>
 
 </body>
