@@ -992,7 +992,6 @@ const searchTerm = normalize($("productSearch").value.trim());
 console.log("Texto buscado:", JSON.stringify(searchTerm));
 
 
-const searchedMatches = catalog.filter(product => {
 
 const searchedMatches = catalog.filter(product => {
   const name = normalize(product.name || "");
@@ -1006,6 +1005,7 @@ const searchedMatches = catalog.filter(product => {
     merchant.includes(word)
   );
 });
+
 
 
     
