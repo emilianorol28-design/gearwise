@@ -1028,6 +1028,7 @@ const searchedMatches = matches.filter(product => {
 
         });
 
+    
       } catch (_) {
 
         $("loading").classList.add("hidden");
@@ -1036,7 +1037,14 @@ const searchedMatches = matches.filter(product => {
 
       }
 
+      } catch (error) {
+
+        console.error(error);
+
+      }
+
     });
+
 
     $("productSearch").addEventListener("input", () => {
   const term = normalize($("productSearch").value.trim());
