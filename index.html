@@ -986,14 +986,16 @@
         
 const searchTerm = normalize($("productSearch").value.trim());
 
-
-        const searchedMatches = matches.filter(product => {
+const searchedMatches = matches.filter(product => {
   const name = normalize(product.name || "");
   const brand = normalize(product.brand || "");
+  const merchant = normalize(product.merchant || "");
   const searchWords = searchTerm.split(/\s+/).filter(Boolean);
 
   return searchWords.every(word =>
-    name.includes(word) || brand.includes(word)
+    name.includes(word) ||
+    brand.includes(word) ||
+    merchant.includes(word)
   );
 });
 
