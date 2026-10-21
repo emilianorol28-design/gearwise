@@ -644,6 +644,17 @@
 
       <div id="loading" class="notice hidden">Buscando opciones para ti…</div>
 
+      
+<div class="step">
+  <label for="productSearch">Buscar por marca o modelo</label>
+  <input
+    id="productSearch"
+    type="search"
+    placeholder="Ej.: Nike, ASICS, adidas..."
+  >
+</div>
+
+    
       <div id="productList" class="products"></div>
 
       <p id="empty" class="notice hidden"></p>
@@ -972,9 +983,19 @@
 
         matches.sort((a, b) => Number(a.price) - Number(b.price));
 
+        
+const searchTerm = normalize($("productSearch").value.trim());
+
+const searchedMatches = matches.filter(product => {
+  const name = normalize(product.name || "");
+  const brand = normalize(product.brand || "");
+  return name.includes(searchTerm) || brand.includes(searchTerm);
+});
+
+
         $("loading").classList.add("hidden");
 
-        if (!matches.length) {
+        if (!searchedMatches.length) {
 
           $("empty").textContent =
 
@@ -990,7 +1011,7 @@
 
         }
 
-        matches.forEach(product => {
+        searchedMatches.forEach(product => {
 
           $("productList").appendChild(createCard(product, profile));
 
