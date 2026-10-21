@@ -891,6 +891,10 @@
 
     }
 
+    let fullCatalog = [];
+    let currentProfile = null;
+    let recommendedProducts = [];     
+    
     async function getCatalog() {
 
       const response = await fetch("./products.json", { cache: "no-store" });
@@ -922,6 +926,8 @@
         goal: $("goal").value
 
       };
+
+      currentProfile = profile;
 
       try {
 
@@ -970,6 +976,7 @@
       try {
 
         const catalog = await getCatalog();
+       fullCatalog = catalog;
 
         const matches = catalog.filter(product => {
 
@@ -986,6 +993,8 @@
         });
 
         matches.sort((a, b) => Number(a.price) - Number(b.price));
+
+        recommendedProducts = [...matches];
 
         
 const searchTerm = normalize($("productSearch").value.trim());
@@ -1042,26 +1051,77 @@ const searchedMatches = searchTerm
 
 
     $("productSearch").addEventListener("input", () => {
+
   const term = normalize($("productSearch").value.trim());
-  const cards = Array.from($("productList").children);
-  let visible = 0;
 
-  cards.forEach(card => {
-    const matches = normalize(card.textContent).includes(term);
-    card.classList.toggle("hidden", !matches);
+  if (!fullCatalog.length || !currentProfile) {
 
-    if (matches) {
-      visible++;
-    }
+    return;
+
+  }
+
+  let results;
+
+  if (term) {
+
+    const searchWords = term.split(/\s+/).filter(Boolean);
+
+    results = fullCatalog.filter(product => {
+
+      const name = normalize(product.name || "");
+
+      const brand = normalize(product.brand || "");
+
+      const merchant = normalize(product.merchant || "");
+
+      return searchWords.every(word =>
+
+        name.includes(word) ||
+
+        brand.includes(word) ||
+
+        merchant.includes(word)
+
+      );
+
+    });
+
+  } else {
+
+    results = [...recommendedProducts];
+
+  }
+
+  results.sort((a, b) => Number(a.price) - Number(b.price));
+
+  $("productList").replaceChildren();
+
+  if (!results.length) {
+
+    $("empty").textContent = term
+
+      ? "No encontramos zapatillas con esa marca o modelo."
+
+      : "No hay productos para estas recomendaciones.";
+
+    $("empty").classList.remove("hidden");
+
+    return;
+
+  }
+
+  $("empty").classList.add("hidden");
+
+  results.forEach(product => {
+
+    $("productList").appendChild(
+
+      createCard(product, currentProfile)
+
+    );
+
   });
 
-  if (cards.length > 0 && visible === 0) {
-    $("empty").textContent =
-      "No encontramos zapatillas con esa búsqueda. Prueba otra marca o modelo.";
-    $("empty").classList.remove("hidden");
-  } else {
-    $("empty").classList.add("hidden");
-  }
 });
     
   </script>
