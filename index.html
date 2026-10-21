@@ -993,6 +993,8 @@ console.log("Texto buscado:", JSON.stringify(searchTerm));
 
 
 const searchedMatches = catalog.filter(product => {
+
+const searchedMatches = catalog.filter(product => {
   const name = normalize(product.name || "");
   const brand = normalize(product.brand || "");
   const merchant = normalize(product.merchant || "");
