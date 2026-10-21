@@ -1042,9 +1042,13 @@ const searchedMatches = matches.filter(product => {
   let visible = 0;
 
   cards.forEach(card => {
- const matches = term === "on"
-  ? normalize(card.textContent).includes("cloudrunner")
-  : normalize(card.textContent).includes(term);
+    const matches = normalize(card.textContent).includes(term);
+    card.classList.toggle("hidden", !matches);
+
+    if (matches) {
+      visible++;
+    }
+  });
 
   if (cards.length > 0 && visible === 0) {
     $("empty").textContent =
