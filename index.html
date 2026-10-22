@@ -1056,10 +1056,16 @@ $("productSearch").addEventListener("input", () => {
       ].includes(merchant);
 
       return words.every(word =>
-        name.includes(word) ||
-        brand.includes(word) ||
-        (realMerchant && merchant.includes(word))
-      );
+  name.includes(word) ||
+  brand.includes(word) ||
+  (realMerchant && merchant.includes(word))
+) && (
+  name.includes(term) ||
+  brand.includes(term) ||
+  (realMerchant && merchant.includes(term))
+        
+    
+    );
     });
   } else {
     results = [...recommendedProducts];
