@@ -1064,80 +1064,55 @@ const searchedMatches = searchTerm
     });
 
 
-    $("productSearch").addEventListener("input", () => {
-
-  const term = normalize($("productSearch").value.trim());
+    
+$("productSearch").addEventListener("input", () => {
+  const term = normalize($("productSearch").value);
+  const productList = $("productList");
 
   if (!fullCatalog.length || !currentProfile) {
-
     return;
-
   }
 
   let results;
 
   if (term) {
-
     const searchWords = term.split(/\s+/).filter(Boolean);
 
     results = fullCatalog.filter(product => {
-
       const name = normalize(product.name || "");
-
       const brand = normalize(product.brand || "");
-
       const merchant = normalize(product.merchant || "");
 
       return searchWords.every(word =>
-
         name.includes(word) ||
-
         brand.includes(word) ||
-
         merchant.includes(word)
-
       );
-
     });
-
   } else {
-
     results = [...recommendedProducts];
-
   }
 
   results.sort((a, b) => Number(a.price) - Number(b.price));
 
-  const productList = $("productList");
-  productList.innerHTML = "";
+  productList.replaceChildren();
 
   if (!results.length) {
-
     $("empty").textContent = term
-
-      ? "No encontramos zapatillas con esa marca o modelo."
-
+      ? "No encontramos productos con esa marca o modelo."
       : "No hay productos para estas recomendaciones.";
 
     $("empty").classList.remove("hidden");
-
     return;
-
   }
 
   $("empty").classList.add("hidden");
 
   results.forEach(product => {
-
-    $("productList").appendChild(
-
-      createCard(product, currentProfile)
-
-    );
-
+    productList.appendChild(createCard(product, currentProfile));
   });
-
 });
+
     
   </script>
 
