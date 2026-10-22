@@ -1056,40 +1056,7 @@ if (matches.length === 0) {
         recommendedProducts = [...matches];
 
         
-const searchTerm = normalize($("productSearch").value.trim());
-matches.sort((a, b) => Number(a.price) - Number(b.price));console.log("Texto buscado:", JSON.stringify(searchTerm));
 
-const searchedMatches = searchTerm
-  ? catalog.filter(product => {
-      const name = normalize(product.name || "");
-      const brand = normalize(product.brand || "");
-      const merchant = normalize(product.merchant || "");
-      const searchWords = searchTerm.split(/\s+/).filter(Boolean);
-      return searchWords.every(word =>
-        name.includes(word) ||
-        brand.includes(word) ||
-        merchant.includes(word)
-      );
-    })
-  : matches;
-
-          $("loading").classList.add("hidden");
-
-      if (!searchedMatches.length) {
-        $("empty").textContent = searchTerm
-          ? "No encontramos productos con esa marca o modelo."
-          : "No hay productos de este deporte dentro de ese presupuesto. Prueba aumentando el presupuesto o elige otro deporte.";
-        $("empty").classList.remove("hidden");
-        return;
-      }
-
-      $("empty").classList.add("hidden");
-
-      searchedMatches.sort((a, b) => Number(a.price) - Number(b.price));
-
-      searchedMatches.forEach(product => {
-        $("productList").appendChild(createCard(product, profile));
-      });
         
       
       } catch (_) {
