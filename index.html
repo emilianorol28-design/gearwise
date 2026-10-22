@@ -1055,18 +1055,17 @@ $("productSearch").addEventListener("input", () => {
         "tienda por verificar"
       ].includes(merchant);
 
-      return words.every(word =>
-  name.includes(word) ||
-  brand.includes(word) ||
-  (realMerchant && merchant.includes(word))
-) && (
-  name.includes(term) ||
-  brand.includes(term) ||
-  (realMerchant && merchant.includes(term))
-        
-    
-    );
+      const nameWords = name.split(/[^a-z0-9]+/).filter(Boolean);
+const brandWords = brand.split(/[^a-z0-9]+/).filter(Boolean);
+const merchantWords = merchant.split(/[^a-z0-9]+/).filter(Boolean);
+
+return words.every(word =>
+  nameWords.includes(word) ||
+  brandWords.includes(word) ||
+  (realMerchant && merchantWords.includes(word))
+);
     });
+ 
   } else {
     results = [...recommendedProducts];
   }
