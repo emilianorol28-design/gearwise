@@ -958,123 +958,79 @@ async function getCatalog() {
 }
 
 
-    $("recommendBtn").addEventListener("click", async () => {
+    
+$("recommendBtn").addEventListener("click", async () => {
+  const profile = {
+    sport: normalize($("sport").value),
+    budget: Number($("budget").value),
+    level: $("level").value,
+    goal: $("goal").value
+  };
 
-      const profile = {
+  currentProfile = profile;
 
-        sport: normalize($("sport").value),
-
-        budget: Number($("budget").value),
-
-        level: $("level").value,
-
-        goal: $("goal").value
-
-      };
-
-      currentProfile = profile;
-
-      try {
-
-      $("quiz").classList.add("hidden");
-
-      $("welcome").classList.add("hidden");
-
-      $("results").classList.remove("hidden");
-
-      $("productList").replaceChildren();
-
-      $("empty").classList.add("hidden");
-
-      $("loadError").classList.add("hidden");
-
-      $("loading").classList.remove("hidden");
-
-      $("intro").textContent =
-
-        "Estas opciones coinciden con el deporte y el presupuesto seleccionados. Están ordenadas de menor a mayor precio.";
-
-      $("summary").replaceChildren();
-
-      [
-
-        "Deporte: " + $("sport").selectedOptions[0].textContent,
-
-        "Presupuesto: " + (profile.budget === 1000 ? "sin límite fijado" : "hasta " + euro(profile.budget)),
-
-        "Nivel: " + $("level").selectedOptions[0].textContent,
-
-        "Objetivo: " + $("goal").selectedOptions[0].textContent
-
-      ].forEach(text => {
-
-        const chip = document.createElement("span");
-
-        chip.className = "chip";
-
-        chip.textContent = text;
-
-        $("summary").appendChild(chip);
-
-      });
-
-      try {
-
-        const catalog = await getCatalog();
-       fullCatalog = catalog;
-
-        
-const matches = catalog.filter(product => {
-  const price = Number(product.price);
-
-  return normalize(product.sport) === profile.sport &&
-    Number.isFinite(price) &&
-    price >= 0 &&
-    price <= profile.budget;
-});
-
-matches.sort((a, b) => Number(a.price) - Number(b.price));
-
-recommendedProducts = [...matches];
-
-$("productList").replaceChildren();
-
-if (matches.length === 0) {
-  $("empty").textContent = "No encontramos productos para tu presupuesto y deporte.";
-  $("empty").classList.remove("hidden");
-} else {
+  $("quiz").classList.add("hidden");
+  $("welcome").classList.add("hidden");
+  $("results").classList.remove("hidden");
+  $("productList").replaceChildren();
   $("empty").classList.add("hidden");
+  $("loadError").classList.add("hidden");
+  $("loading").classList.remove("hidden");
 
-  matches.forEach(product => {
-    $("productList").appendChild(createCard(product, profile));
+  $("intro").textContent =
+    "Estas opciones coinciden con el deporte y el presupuesto seleccionados. Están ordenadas de menor a mayor precio.";
+
+  $("summary").replaceChildren();
+
+  [
+    "Deporte: " + $("sport").selectedOptions[0].textContent,
+    "Presupuesto: " + (profile.budget === 1000
+      ? "sin límite fijado"
+      : "hasta " + euro(profile.budget)),
+    "Nivel: " + $("level").selectedOptions[0].textContent,
+    "Objetivo: " + $("goal").selectedOptions[0].textContent
+  ].forEach(text => {
+    const chip = document.createElement("span");
+    chip.className = "chip";
+    chip.textContent = text;
+    $("summary").appendChild(chip);
   });
-}
 
+  try {
+    const catalog = await getCatalog();
+    fullCatalog = catalog;
 
-        matches.sort((a, b) => Number(a.price) - Number(b.price));
-
-        recommendedProducts = [...matches];
-
-        
-
-        
-      
-      } catch (_) {
-
-        $("loading").classList.add("hidden");
-
-        $("loadError").classList.remove("hidden");
-
-      }
-
-      } catch (error) {
-
-        console.error(error);
-
-      }
-
+    const matches = catalog.filter(product => {
+      const price = Number(product.price);
+      return normalize(product.sport) === profile.sport &&
+        Number.isFinite(price) &&
+        price >= 0 &&
+        price <= profile.budget;
     });
 
+    matches.sort((a, b) => Number(a.price) - Number(b.price));
+    recommendedProducts = [...matches];
+
+    $("productList").replaceChildren();
+
+    if (matches.length === 0) {
+      $("empty").textContent =
+        "No encontramos productos para tu presupuesto y deporte.";
+      $("empty").classList.remove("hidden");
+    } else {
+      $("empty").classList.add("hidden");
+
+      matches.forEach(product => {
+        $("productList").appendChild(createCard(product, profile));
+      });
+    }
+  } catch (error) {
+    console.error("Error al cargar el catálogo:", error);
+    $("loadError").classList.remove("hidden");
+  } finally {
+    $("loading").classList.add("hidden");
+  }
+});
 
     
 $("productSearch").addEventListener("input", () => {
