@@ -833,7 +833,7 @@
 
       if (profile.goal === "daily") {
 
-        reason.textContent = "Para entrenar habitualmente: revisa el ajuste, la comodidad y las características antes de elegir.";p
+        reason.textContent = "Para entrenar habitualmente: revisa el ajuste, la comodidad y las características antes de elegir.";
 
       } else if (profile.goal === "performance") {
 
@@ -895,23 +895,68 @@
     let currentProfile = null;
     let recommendedProducts = [];     
     
-    async function getCatalog() {
-
-      const response = await fetch("./products.json", { cache: "no-store" });
-
-      if (!response.ok) throw new Error("No se pudo cargar products.json");
-
-      const data = await response.json();
-
-      if (!Array.isArray(data)) {
-
-        throw new Error("El catálogo no tiene el formato esperado");
-
-      }
-
-      return data;
-
+ 
+async function getCatalog() {
+  return [
+    {
+      name: "adidas Runblaze",
+      brand: "adidas",
+      sport: "running",
+      price: 54.99,
+      merchant: "Tienda por confirmar",
+      description: "Zapatillas para running."
+    },
+    {
+      name: "ASICS GEL Windhawk",
+      brand: "ASICS",
+      sport: "running",
+      price: 74.99,
+      merchant: "Tienda por confirmar",
+      description: "Zapatillas para correr."
+    },
+    {
+      name: "KIPRUN Jogflow 100.1",
+      brand: "KIPRUN",
+      sport: "running",
+      price: 14.99,
+      merchant: "Tienda por confirmar",
+      description: "Zapatillas de running económicas."
+    },
+    {
+      name: "Nike Revolution 7",
+      brand: "Nike",
+      sport: "running",
+      price: 66.75,
+      merchant: "Tienda por confirmar",
+      description: "Zapatillas para entrenamientos de running."
+    },
+    {
+      name: "On Cloudrunner 3",
+      brand: "On",
+      sport: "running",
+      price: 160,
+      merchant: "On España",
+      description: "Zapatillas para running."
+    },
+    {
+      name: "adidas Adizero Boston 13",
+      brand: "adidas",
+      sport: "running",
+      price: 120,
+      merchant: "Tienda por confirmar",
+      description: "Zapatillas de running."
+    },
+    {
+      name: "adidas Adizero Adios Pro 5",
+      brand: "adidas",
+      sport: "running",
+      price: 260,
+      merchant: "Tienda por confirmar",
+      description: "Zapatillas de running."
     }
+  ];
+}
+
 
     $("recommendBtn").addEventListener("click", async () => {
 
