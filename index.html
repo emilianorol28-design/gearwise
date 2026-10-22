@@ -1033,7 +1033,6 @@ $("recommendBtn").addEventListener("click", async () => {
 });
 
     
-
 $("productSearch").addEventListener("input", () => {
   const term = normalize($("productSearch").value);
   const productList = $("productList");
@@ -1049,6 +1048,7 @@ $("productSearch").addEventListener("input", () => {
       const name = normalize(product.name || "");
       const brand = normalize(product.brand || "");
       const merchant = normalize(product.merchant || product.store || "");
+
       const realMerchant = ![
         "",
         "tienda por confirmar",
