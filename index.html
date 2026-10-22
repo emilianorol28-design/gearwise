@@ -833,7 +833,7 @@
 
       if (profile.goal === "daily") {
 
-        reason.textContent = "Para entrenar habitualmente: revisa el ajuste, la comodidad y las características antes de elegir.";
+        reason.textContent = "Para entrenar habitualmente: revisa el ajuste, la comodidad y las características antes de elegir.";p
 
       } else if (profile.goal === "performance") {
 
@@ -1094,7 +1094,8 @@ const searchedMatches = searchTerm
 
   results.sort((a, b) => Number(a.price) - Number(b.price));
 
-  $("productList").replaceChildren();
+  const productList = $("productList");
+  productList.innerHTML = "";
 
   if (!results.length) {
 
