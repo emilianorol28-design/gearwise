@@ -978,19 +978,33 @@
         const catalog = await getCatalog();
        fullCatalog = catalog;
 
-        const matches = catalog.filter(product => {
+        
+const matches = catalog.filter(product => {
+  const price = Number(product.price);
 
-          const price = Number(product.price);
+  return normalize(product.sport) === profile.sport &&
+    Number.isFinite(price) &&
+    price >= 0 &&
+    price <= profile.budget;
+});
 
-          return normalize(product.sport) === profile.sport &&
+matches.sort((a, b) => Number(a.price) - Number(b.price));
 
-            Number.isFinite(price) &&
+recommendedProducts = [...matches];
 
-            price >= 0 &&
+$("productList").replaceChildren();
 
-            price <= profile.budget;
+if (matches.length === 0) {
+  $("empty").textContent = "No encontramos productos para tu presupuesto y deporte.";
+  $("empty").classList.remove("hidden");
+} else {
+  $("empty").classList.add("hidden");
 
-        });
+  matches.forEach(product => {
+    $("productList").appendChild(createCard(product, profile));
+  });
+}
+
 
         matches.sort((a, b) => Number(a.price) - Number(b.price));
 
@@ -998,7 +1012,7 @@
 
         
 const searchTerm = normalize($("productSearch").value.trim());
-console.log("Texto buscado:", JSON.stringify(searchTerm));
+matches.sort((a, b) => Number(a.price) - Number(b.price));console.log("Texto buscado:", JSON.stringify(searchTerm));
 
 const searchedMatches = searchTerm
   ? catalog.filter(product => {
