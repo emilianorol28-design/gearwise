@@ -1043,6 +1043,7 @@ $("productSearch").addEventListener("input", () => {
 
   if (term) {
     const words = term.split(/\s+/).filter(Boolean);
+    const exactTerm = term.trim();
 
     results = fullCatalog.filter(product => {
       const name = normalize(product.name || "");
@@ -1055,15 +1056,21 @@ $("productSearch").addEventListener("input", () => {
         "tienda por verificar"
       ].includes(merchant);
 
-      const nameWords = name.split(/[^a-z0-9]+/).filter(Boolean);
-const brandWords = brand.split(/[^a-z0-9]+/).filter(Boolean);
-const merchantWords = merchant.split(/[^a-z0-9]+/).filter(Boolean);
+      const nameWords = normalize(product.name || "")
+  .split(/[^a-z0-9]+/)
+  .filter(Boolean);
 
-return words.every(word =>
-  nameWords.includes(word) ||
-  brandWords.includes(word) ||
-  (realMerchant && merchantWords.includes(word))
-);
+const brandWords = normalize(product.brand || "")
+  .split(/[^a-z0-9]+/)
+  .filter(Boolean);
+
+const merchantWords = normalize(product.merchant || product.store || "")
+  .split(/[^a-z0-9]+/)
+  .filter(Boolean);
+
+return nameWords.includes(exactTerm) ||
+       brandWords.includes(exactTerm) ||
+       (realMerchant && merchantWords.includes(exactTerm));
     });
  
   } else {
