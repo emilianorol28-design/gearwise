@@ -1033,28 +1033,32 @@ $("recommendBtn").addEventListener("click", async () => {
 });
 
     
+
 $("productSearch").addEventListener("input", () => {
   const term = normalize($("productSearch").value);
   const productList = $("productList");
 
-  if (!fullCatalog.length || !currentProfile) {
-    return;
-  }
+  if (!fullCatalog.length || !currentProfile) return;
 
   let results;
 
   if (term) {
-    const searchWords = term.split(/\s+/).filter(Boolean);
+    const words = term.split(/\s+/).filter(Boolean);
 
     results = fullCatalog.filter(product => {
       const name = normalize(product.name || "");
       const brand = normalize(product.brand || "");
-      const merchant = normalize(product.merchant || "");
+      const merchant = normalize(product.merchant || product.store || "");
+      const realMerchant = ![
+        "",
+        "tienda por confirmar",
+        "tienda por verificar"
+      ].includes(merchant);
 
-      return searchWords.every(word =>
+      return words.every(word =>
         name.includes(word) ||
         brand.includes(word) ||
-        merchant.includes(word)
+        (realMerchant && merchant.includes(word))
       );
     });
   } else {
@@ -1062,14 +1066,12 @@ $("productSearch").addEventListener("input", () => {
   }
 
   results.sort((a, b) => Number(a.price) - Number(b.price));
-
   productList.replaceChildren();
 
   if (!results.length) {
     $("empty").textContent = term
       ? "No encontramos productos con esa marca o modelo."
       : "No hay productos para estas recomendaciones.";
-
     $("empty").classList.remove("hidden");
     return;
   }
