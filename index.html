@@ -654,8 +654,17 @@
   >
 </div>
 
-    
-      <div id="productList" class="products"></div>
+<div class="step">
+  <label for="priceSort">Ordenar por precio:</label>
+  <select id="priceSort">
+    <option value="asc">Menor a mayor</option>
+    <option value="desc">Mayor a menor</option>
+  </select>
+</div>
+
+<div id="productList" class="products"></div>
+
+  
 
       <p id="empty" class="notice hidden"></p>
 
@@ -1023,7 +1032,13 @@ $("recommendBtn").addEventListener("click", async () => {
         price <= profile.budget;
     });
 
-    matches.sort((a, b) => Number(a.price) - Number(b.price));
+    
+const sortOrder = $("priceSort").value;
+matches.sort((a, b) => {
+  const difference = Number(a.price) - Number(b.price);
+  return sortOrder === "desc" ? -difference : difference;
+});
+
     recommendedProducts = [...matches];
 
     $("productList").replaceChildren();
@@ -1092,8 +1107,14 @@ return nameWords.includes(exactTerm) ||
     results = [...recommendedProducts];
   }
 
-  results.sort((a, b) => Number(a.price) - Number(b.price));
-  productList.replaceChildren();
+  
+const sortOrder = $("priceSort").value;
+results.sort((a, b) => {
+  const difference = Number(a.price) - Number(b.price);
+  return sortOrder === "desc" ? -difference : difference;
+});
+productList.replaceChildren();
+
 
   if (!results.length) {
     $("empty").textContent = term
@@ -1109,6 +1130,12 @@ return nameWords.includes(exactTerm) ||
     productList.appendChild(createCard(product, currentProfile));
   });
 });
+
+    
+$("priceSort").addEventListener("change", () => {
+  $("productSearch").dispatchEvent(new Event("input"));
+});
+
 
     
   </script>
