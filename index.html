@@ -536,91 +536,62 @@
 
     <section id="quiz" class="panel hidden">
 
-      <div class="eyebrow">Paso 1 · Personalización</div>
+  <div class="eyebrow" id="quizProgress">Pregunta 1 de 4</div>
 
-      <h2>¿Qué estás buscando?</h2>
+  <h2>Personaliza tu búsqueda</h2>
 
-      <p class="muted">Personaliza tu búsqueda en unos segundos.</p>
+  <p class="muted">Responde una pregunta cada vez.</p>
 
-      <div class="step">
+  <div class="step">
+    <label for="sport">1. ¿Qué deporte practicas?</label>
+    <select id="sport">
+      <option value="running">Running</option>
+      <option value="football">Fútbol</option>
+      <option value="basketball">Baloncesto</option>
+      <option value="fitness">Fitness</option>
+      <option value="tennis">Tenis</option>
+    </select>
+  </div>
 
-        <label for="sport">1. ¿Qué deporte practicas?</label>
+  <div class="step">
+    <label for="budget">2. ¿Cuál es tu presupuesto máximo?</label>
+    <select id="budget">
+      <option value="50">Hasta 50 €</option>
+      <option value="80">Hasta 80 €</option>
+      <option value="100" selected>Hasta 100 €</option>
+      <option value="180">Hasta 180 €</option>
+      <option value="300">Hasta 300 €</option>
+      <option value="1000">Sin límite fijado</option>
+    </select>
+  </div>
 
-        <select id="sport">
+  <div class="step">
+    <label for="level">3. ¿Cuál es tu nivel?</label>
+    <select id="level">
+      <option value="beginner">Estoy empezando</option>
+      <option value="regular">Practico regularmente</option>
+      <option value="advanced">Tengo experiencia avanzada</option>
+    </select>
+  </div>
 
-          <option value="running">Running</option>
+  <div class="step">
+    <label for="goal">4. ¿Cuál es tu objetivo principal?</label>
+    <select id="goal">
+      <option value="daily">Entrenar habitualmente</option>
+      <option value="performance">Mejorar mi rendimiento</option>
+      <option value="competition">Competir</option>
+    </select>
+  </div>
 
-          <option value="football">Fútbol</option>
+  <div class="quiz-navigation">
+    <button id="prevStepBtn" class="secondary" type="button">← Anterior</button>
+    <button id="nextStepBtn" type="button">Siguiente →</button>
+  </div>
 
-          <option value="basketball">Baloncesto</option>
+  <button id="recommendBtn" type="button">Ver mis recomendaciones →</button>
+  <button id="backBtn" class="secondary" type="button">Volver al inicio</button>
 
-          <option value="fitness">Fitness</option>
-
-          <option value="tennis">Tenis</option>
-
-        </select>
-
-      </div>
-
-      <div class="step">
-
-        <label for="budget">2. ¿Cuál es tu presupuesto máximo?</label>
-
-        <select id="budget">
-
-          <option value="50">Hasta 50 €</option>
-
-          <option value="80">Hasta 80 €</option>
-
-          <option value="100" selected>Hasta 100 €</option>
-
-          <option value="180">Hasta 180 €</option>
-
-          <option value="300">Hasta 300 €</option>
-
-          <option value="1000">Sin límite fijado</option>
-
-        </select>
-
-      </div>
-
-      <div class="step">
-
-        <label for="level">3. ¿Cuál es tu nivel?</label>
-
-        <select id="level">
-
-          <option value="beginner">Estoy empezando</option>
-
-          <option value="regular">Practico regularmente</option>
-
-          <option value="advanced">Tengo experiencia avanzada</option>
-
-        </select>
-
-      </div>
-
-      <div class="step">
-
-        <label for="goal">4. ¿Cuál es tu objetivo principal?</label>
-
-        <select id="goal">
-
-          <option value="daily">Entrenar habitualmente</option>
-
-          <option value="performance">Mejorar mi rendimiento</option>
-
-          <option value="competition">Competir</option>
-
-        </select>
-
-      </div>
-
-      <button id="recommendBtn">Ver mis recomendaciones →</button>
-
-      <button id="backBtn" class="secondary">Volver</button>
-
-    </section>
+</section>
 
     <section id="results" class="hidden">
 
@@ -692,31 +663,60 @@
 
   <script>
 
-    const $ = id => document.getElementById(id);
+   const $ = id => document.getElementById(id);
 
-    $("startBtn").addEventListener("click", () => {
+    
+  $("startBtn").addEventListener("click", () => {
+  currentQuizStep = 0;
+  $("welcome").classList.add("hidden");
+  $("quiz").classList.remove("hidden");
+  showQuizStep();
+});
 
-      $("welcome").classList.add("hidden");
-
-      $("quiz").classList.remove("hidden");
+          let currentQuizStep = 0;
+    function showQuizStep() {
+      const steps = document.querySelectorAll("#quiz .step");
+      steps.forEach((step, index) => {
+        step.style.display = index === currentQuizStep ? "" : "none";
+      });
+      $("quizProgress").textContent =
+        "Pregunta " + (currentQuizStep + 1) + " de " + steps.length;
+      $("prevStepBtn").style.display =
+        currentQuizStep === 0 ? "none" : "";
+      $("nextStepBtn").style.display =
+        currentQuizStep === steps.length - 1 ? "none" : "";
+      $("recommendBtn").style.display =
+        currentQuizStep === steps.length - 1 ? "" : "none";
+    }
+    $("nextStepBtn").addEventListener("click", () => {
+      const steps = document.querySelectorAll("#quiz .step");
+      if (currentQuizStep < steps.length - 1) {
+        currentQuizStep++;
+        showQuizStep();
+      }
+    });
+    $("prevStepBtn").addEventListener("click", () => {
+      if (currentQuizStep > 0) {
+        currentQuizStep--;
+        showQuizStep();
+      }
 
     });
+
+    showQuizStep();
 
     $("backBtn").addEventListener("click", () => {
+  $("quiz").classList.add("hidden");
+  $("welcome").classList.remove("hidden");
 
-      $("quiz").classList.add("hidden");
-
-      $("welcome").classList.remove("hidden");
-
-    });
+  });
 
     $("editBtn").addEventListener("click", () => {
-
-      $("results").classList.add("hidden");
-
-      $("quiz").classList.remove("hidden");
-
-    });
+  currentQuizStep = 0;
+  $("results").classList.add("hidden");
+  $("quiz").classList.remove("hidden");
+  showQuizStep();
+});
 
     function euro(value) {
 
@@ -1207,7 +1207,7 @@ $("productSearch").addEventListener("input", () => {
     const words = term.split(/\s+/).filter(Boolean);
     const exactTerm = term.trim();
 
-    results = fullCatalog.filter(product => {
+    results = recommendedProducts.filter(product => {
       const name = normalize(product.name || "");
       const brand = normalize(product.brand || "");
       const merchant = normalize(product.merchant || product.store || "");
@@ -1230,9 +1230,10 @@ const merchantWords = normalize(product.merchant || product.store || "")
   .split(/[^a-z0-9]+/)
   .filter(Boolean);
 
-return nameWords.includes(exactTerm) ||
-       brandWords.includes(exactTerm) ||
-       (realMerchant && merchantWords.includes(exactTerm));
+return name.includes(exactTerm) ||
+       brand.includes(exactTerm) ||
+       (realMerchant && merchant.includes(exactTerm));
+      
     });
  
   } else {
