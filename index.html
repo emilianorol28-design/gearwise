@@ -1174,8 +1174,54 @@ async function getCatalog() {
 }
 
 
-    
-$("recommendBtn").addEventListener("click", async () => {
+   
+const scoreProduct = (product, profile) => {
+  const text = normalize(
+    (product.name || "") + " " + (product.description || "")
+  );
+
+  let score = 0;
+
+  // Objetivo: entrenar habitualmente
+  if (profile.goal === "daily") {
+    if (/daily|diario|diaria|habitual|entrenamiento/.test(text)) {
+      score += 2;
+    }
+  }
+
+  // Objetivo: mejorar el rendimiento
+  if (profile.goal === "performance") {
+    if (/speed|velocidad|rapid|reactiv|liger|performance|rendimiento/.test(text)) {
+      score += 2;
+    }
+  }
+
+  // Objetivo: competir
+  if (profile.goal === "competition") {
+    if (/competition|competicion|race|carrera|adizero|cloudboom|maraton/.test(text)) {
+      score += 2;
+    }
+  }
+
+  // Nivel principiante: priorizar comodidad y uso diario
+  if (profile.level === "beginner") {
+    if (/comod|diario|diaria|amortiguacion|entrenamiento/.test(text)) {
+      score += 1;
+    }
+  }
+
+  // Nivel avanzado: priorizar características dinámicas
+  if (profile.level === "advanced") {
+    if (/reactiv|velocidad|rapid|adizero|cloudboom|zoomx/.test(text)) {
+      score += 1;
+    }
+  }
+
+  return score;
+};
+
+
+  $("recommendBtn").addEventListener("click", async () => {
   const profile = {
     sport: normalize($("sport").value),
     budget: Number($("budget").value),
@@ -1184,6 +1230,7 @@ $("recommendBtn").addEventListener("click", async () => {
   };
 
   currentProfile = profile;
+  $("productSearch").value = "";
 
   $("quiz").classList.add("hidden");
   $("welcome").classList.add("hidden");
@@ -1194,8 +1241,8 @@ $("recommendBtn").addEventListener("click", async () => {
   $("loading").classList.remove("hidden");
 
   $("intro").textContent =
-    "Estas opciones coinciden con el deporte y el presupuesto seleccionados. Están ordenadas de menor a mayor precio.";
-
+  "Estas opciones coinciden con tu deporte y presupuesto. El orden prioriza el objetivo y el nivel seleccionados; en caso de empate, se ordenan por precio.";
+  
   $("summary").replaceChildren();
 
   [
@@ -1225,10 +1272,15 @@ $("recommendBtn").addEventListener("click", async () => {
     });
 
     
+
 const sortOrder = $("priceSort").value;
+
 matches.sort((a, b) => {
-  const difference = Number(a.price) - Number(b.price);
-  return sortOrder === "desc" ? -difference : difference;
+  const priceDifference = Number(a.price) - Number(b.price);
+
+  return sortOrder === "desc"
+    ? -priceDifference
+    : priceDifference;
 });
 
     recommendedProducts = [...matches];
@@ -1255,80 +1307,67 @@ matches.sort((a, b) => {
 });
 
     
-$("productSearch").addEventListener("input", () => {
-  const term = normalize($("productSearch").value);
+
+function renderProducts(products) {
   const productList = $("productList");
+  const empty = $("empty");
+  const term = normalize($("productSearch").value);
+  const sortOrder = $("priceSort").value;
 
-  if (!fullCatalog.length || !currentProfile) return;
+  const results = [...products].sort((a, b) => {
+    const difference = Number(a.price) - Number(b.price);
+    return sortOrder === "desc" ? -difference : difference;
+  });
 
-  let results;
-
-  if (term) {
-    const words = term.split(/\s+/).filter(Boolean);
-    const exactTerm = term.trim();
-
-    results = recommendedProducts.filter(product => {
-      const name = normalize(product.name || "");
-      const brand = normalize(product.brand || "");
-      const merchant = normalize(product.merchant || product.store || "");
-
-      const realMerchant = ![
-        "",
-        "tienda por confirmar",
-        "tienda por verificar"
-      ].includes(merchant);
-
-      const nameWords = normalize(product.name || "")
-  .split(/[^a-z0-9]+/)
-  .filter(Boolean);
-
-const brandWords = normalize(product.brand || "")
-  .split(/[^a-z0-9]+/)
-  .filter(Boolean);
-
-const merchantWords = normalize(product.merchant || product.store || "")
-  .split(/[^a-z0-9]+/)
-  .filter(Boolean);
-
-return name.includes(exactTerm) ||
-       brand.includes(exactTerm) ||
-       (realMerchant && merchant.includes(exactTerm));
-      
-    });
- 
-  } else {
-    results = [...recommendedProducts];
-  }
-
-  
-const sortOrder = $("priceSort").value;
-results.sort((a, b) => {
-  const difference = Number(a.price) - Number(b.price);
-  return sortOrder === "desc" ? -difference : difference;
-});
-productList.replaceChildren();
-
+  productList.replaceChildren();
 
   if (!results.length) {
-    $("empty").textContent = term
-      ? "No encontramos productos con esa marca o modelo."
+    empty.textContent = term
+      ? "No encontramos coincidencias en las recomendaciones disponibles."
       : "No hay productos para estas recomendaciones.";
-    $("empty").classList.remove("hidden");
+    empty.classList.remove("hidden");
     return;
   }
 
-  $("empty").classList.add("hidden");
+  empty.classList.add("hidden");
 
   results.forEach(product => {
     productList.appendChild(createCard(product, currentProfile));
   });
+}
+
+$("productSearch").addEventListener("input", () => {
+  if (!fullCatalog.length || !currentProfile) return;
+
+  const term = normalize($("productSearch").value);
+  const words = term.split(/\s+/).filter(Boolean);
+
+  const results = recommendedProducts.filter(product => {
+    const name = normalize(product.name || "");
+    const brand = normalize(product.brand || "");
+    const merchant = normalize(product.merchant || product.store || "");
+
+    const realMerchant = ![
+      "",
+      "tienda por confirmar",
+      "tienda por verificar"
+    ].includes(merchant);
+
+    return words.every(word =>
+      name.includes(word) ||
+      brand.includes(word) ||
+      (realMerchant && merchant.includes(word))
+    );
+  });
+
+  renderProducts(results);
 });
 
-    
 $("priceSort").addEventListener("change", () => {
+  if (!fullCatalog.length || !currentProfile) return;
+
   $("productSearch").dispatchEvent(new Event("input"));
 });
-
 
     
   </script>
