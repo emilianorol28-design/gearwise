@@ -1173,47 +1173,65 @@ async function getCatalog() {
   ];
 }
 
-
-   
 const scoreProduct = (product, profile) => {
   const text = normalize(
-    (product.name || "") + " " + (product.description || "")
+    (product.name || "") + " " +
+    (product.description || "")
   );
 
   let score = 0;
 
-  // Objetivo: entrenar habitualmente
+  // Entrenamiento diario
   if (profile.goal === "daily") {
-    if (/daily|diario|diaria|habitual|entrenamiento/.test(text)) {
-      score += 2;
+    if (/diari|daily|habitual|entrenamiento|cumulus|supernova|cloudrunner|jogflow|revolution|quest|run defy|excite/.test(text)) {
+      score += 3;
+    }
+
+    if (/competicion|competition|adios pro|cloudboom/.test(text)) {
+      score -= 2;
     }
   }
 
-  // Objetivo: mejorar el rendimiento
+  // Mejorar rendimiento
   if (profile.goal === "performance") {
-    if (/speed|velocidad|rapid|reactiv|liger|performance|rendimiento/.test(text)) {
-      score += 2;
+    if (/velocidad|rapida|rapido|liger|reactiv|speed|adizero|cloudflow|novablast|zoomx|pegasus plus/.test(text)) {
+      score += 3;
+    }
+
+    if (/economicas|economica|jogflow 100/.test(text)) {
+      score -= 1;
     }
   }
 
-  // Objetivo: competir
+  // Competición
   if (profile.goal === "competition") {
-    if (/competition|competicion|race|carrera|adizero|cloudboom|maraton/.test(text)) {
+    if (/competicion|competition|carrera|race|adios pro|cloudboom|maraton/.test(text)) {
+      score += 4;
+    }
+
+    if (/diario|diaria|jogflow 100|run defy|revolution 7/.test(text)) {
+      score -= 2;
+    }
+  }
+
+  // Principiante: priorizar modelos de uso cotidiano
+  if (profile.level === "beginner") {
+    if (/diario|diaria|entrenamiento|comod|amortiguacion|jogflow|revolution|run defy|excite/.test(text)) {
       score += 2;
     }
   }
 
-  // Nivel principiante: priorizar comodidad y uso diario
-  if (profile.level === "beginner") {
-    if (/comod|diario|diaria|amortiguacion|entrenamiento/.test(text)) {
-      score += 1;
+  // Nivel regular
+  if (profile.level === "regular") {
+    if (/entrenamiento|diario|reactiv|versatil|duramo|pegasus|novablast/.test(text)) {
+      score += 2;
     }
   }
 
-  // Nivel avanzado: priorizar características dinámicas
+  // Nivel avanzado
   if (profile.level === "advanced") {
-    if (/reactiv|velocidad|rapid|adizero|cloudboom|zoomx/.test(text)) {
-      score += 1;
+    if (/liger|reactiv|velocidad|adizero|cloudflow|cloudboom|zoomx|pegasus plus/.test(text)) {
+      score += 3;
     }
   }
 
@@ -1241,7 +1259,7 @@ const scoreProduct = (product, profile) => {
   $("loading").classList.remove("hidden");
 
   $("intro").textContent =
-  "Estas opciones coinciden con tu deporte y presupuesto. El orden prioriza el objetivo y el nivel seleccionados; en caso de empate, se ordenan por precio.";
+  "Mostramos primero las zapatillas que mejor encajan con tu objetivo y nivel, dentro de tu deporte y presupuesto. Puedes cambiar el orden por precio cuando quieras.";
   
   $("summary").replaceChildren();
 
@@ -1276,6 +1294,13 @@ const scoreProduct = (product, profile) => {
 const sortOrder = $("priceSort").value;
 
 matches.sort((a, b) => {
+  const scoreDifference =
+    scoreProduct(b, profile) - scoreProduct(a, profile);
+
+  if (scoreDifference !== 0) {
+    return scoreDifference;
+  }
+
   const priceDifference = Number(a.price) - Number(b.price);
 
   return sortOrder === "desc"
