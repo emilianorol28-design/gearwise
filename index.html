@@ -1340,9 +1340,20 @@ function renderProducts(products) {
   const sortOrder = $("priceSort").value;
 
   const results = [...products].sort((a, b) => {
-    const difference = Number(a.price) - Number(b.price);
-    return sortOrder === "desc" ? -difference : difference;
-  });
+  const scoreDifference =
+    scoreProduct(b, currentProfile) -
+    scoreProduct(a, currentProfile);
+
+  if (scoreDifference !== 0) {
+    return scoreDifference;
+  }
+
+  const priceDifference = Number(a.price) - Number(b.price);
+
+  return sortOrder === "desc"
+    ? -priceDifference
+    : priceDifference;
+});
 
   productList.replaceChildren();
 
