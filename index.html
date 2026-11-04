@@ -1308,18 +1308,23 @@ matches.sort((a, b) => {
     : priceDifference;
 });
 
-    recommendedProducts = [...matches];
+     const relevantMatches = matches
+      .filter(product => scoreProduct(product, profile) > 0)
+      .slice(0, 5);
+
+    recommendedProducts = [...relevantMatches];
 
     $("productList").replaceChildren();
 
-    if (matches.length === 0) {
-      $("empty").textContent =
-        "No encontramos productos para tu presupuesto y deporte.";
+    if (relevantMatches.length === 0) {
+      $("empty").textContent = matches.length === 0
+        ? "No encontramos productos para tu presupuesto y deporte."
+        : "No encontramos zapatillas que encajen bien con tu objetivo y nivel dentro de tu presupuesto.";
       $("empty").classList.remove("hidden");
     } else {
       $("empty").classList.add("hidden");
 
-      matches.forEach(product => {
+      relevantMatches.forEach(product => {
         $("productList").appendChild(createCard(product, profile));
       });
     }
