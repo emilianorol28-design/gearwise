@@ -1343,21 +1343,21 @@ function renderProducts(products) {
   const term = normalize($("productSearch").value);
   const sortOrder = $("priceSort").value;
 
-  const results = [...products].sort((a, b) => {
-  const scoreDifference =
-    scoreProduct(b, currentProfile) -
-    scoreProduct(a, currentProfile);
+    const results = [...products].sort((a, b) => {
+    const priceDifference = Number(a.price) - Number(b.price);
 
-  if (scoreDifference !== 0) {
-    return scoreDifference;
-  }
+    if (sortOrder === "best") {
+      const scoreDifference =
+        scoreProduct(b, currentProfile) -
+        scoreProduct(a, currentProfile);
 
-  const priceDifference = Number(a.price) - Number(b.price);
+      return scoreDifference !== 0 ? scoreDifference : priceDifference;
+    }
 
-  return sortOrder === "desc"
-    ? -priceDifference
-    : priceDifference;
-});
+    return sortOrder === "desc"
+      ? -priceDifference
+      : priceDifference;
+  });
 
   productList.replaceChildren();
 
