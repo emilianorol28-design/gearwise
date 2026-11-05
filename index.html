@@ -1177,7 +1177,23 @@ async function getCatalog() {
   ];
 }
 
+const scoreFootball = (product, profile) => {
+  const goals = product.goals || [];
+  const levels = product.levels || [];
+
+  if (!goals.includes(profile.goal)) return 0;
+
+  let score = 3;
+
+  if (levels.includes(profile.level)) score += 2;
+
+  return score;
+};
+
 const scoreProduct = (product, profile) => {
+  if (normalize(product.sport) === "football") {
+    return scoreFootball(product, profile);
+  }
   const text = normalize(
     (product.name || "") + " " +
     (product.description || "")
